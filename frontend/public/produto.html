@@ -32,36 +32,36 @@
                     <div class="card-body">
                         <h5 class="card-title">Registrar Produto</h5>
                         <form id="cadastroProduto">
-                            <!-- Nome do Produto -->
+                            <!-- tipo do Produto -->
                             <div class="row mb-3">
-                                <label for="inputNomeProduto" class="col-sm-2 col-form-label">Nome do Produto</label>
+                                <label for="inputTipo" class="col-sm-2 col-form-label">Tipo do Produto</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputNomeProduto"
-                                        placeholder="Digite o nome do produto">
+                                    <input type="text" class="form-control" id="inputTipo"
+                                        placeholder="Digite o tipo do produto">
                                 </div>
                             </div>
 
-                            <!-- Descrição do Produto -->
+                            <!-- modelo do Produto -->
                             <div class="row mb-3">
-                                <label for="inputDescricao" class="col-sm-2 col-form-label">Descrição</label>
+                                <label for="inputModelo" class="col-sm-2 col-form-label">Modelo</label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" id="inputDescricao" rows="3"
-                                        placeholder="Digite a descrição do produto"></textarea>
+                                    <input type="text" class="form-control" id="inputModelo"
+                                        placeholder="Digite o tipo do produto">
                                 </div>
                             </div>
 
-                            <!-- Preço  -->
+                            <!-- numero de serie  -->
                             <div class="row mb-3">
-                                <label for="inputPreco" class="col-sm-2 col-form-label">Preço</label>
+                                <label for="inputNumSerie" class="col-sm-2 col-form-label">Número de serie</label>
                                 <div class="col-sm-4">
-                                    <input type="number" class="form-control" id="inputPreco"
-                                        placeholder="Digite o preço">
+                                    <input type="number" class="form-control" id="inputNumSerie"
+                                        placeholder="Digite o numero de serie">
                                 </div>
                             </div>
 
                             <!-- Botões de Ação -->
                             <div class="text-center">
-                                <button type="submit" id="enviarProduto" class="btn btn-primary">Enviar</button>
+                                <button type="submit" id="cadastrarProduto" class="btn btn-primary">Cadastrar</button>
                                 <button id="deleteButtonProduto" class="btn btn-danger">Deletar</button>
                                 <button type="reset" class="btn btn-secondary">Limpar</button>
                             </div>
@@ -71,9 +71,9 @@
                         <table class="table" id="produto-table">
                             <thead>
                                 <tr><th scope="col">ID</th>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Descição</th>
-                                    <th scope="col">Preco</th>
+                                    <th scope="col">Tipo</th>
+                                    <th scope="col">modelo</th>
+                                    <th scope="col">numero de serie</th>
                                 </tr>
                             </thead>
                             <tbody id="produto-list">
@@ -84,6 +84,31 @@
                     </div>
                 </div>
             </div>
+            <form id="FormPesquisarProduto">
+                <!-- tipo do Produto -->
+                <div class="row mb-3">
+                    <label for="inputIdProduto" class="col-sm-2 col-form-label">ID do Produto</label>
+                    <div class="col-sm-2">
+                        <input type="number" class="form-control" id="inputIdProduto"
+                            placeholder="Digite o ID do produto">
+                    </div>
+                </div>
+            </form>
+
+            <button type="submit" id="pesquisarProduto" class="btn btn-primary">Pesquisar</button>
+
+            <table class="table" id="produto-result">
+                <thead>
+                    <tr><th scope="col">ID</th>
+                        <th scope="col">tipo</th>
+                        <th scope="col">modelo</th>
+                        <th scope="col">Numero de serie</th>
+                    </tr>
+                </thead>
+                <tbody id="resultPesquisa">
+                    <!-- As linhas serão inseridas aqui -->
+                </tbody>
+            </table>
         </section>
 
     </main><!-- End Main Content -->

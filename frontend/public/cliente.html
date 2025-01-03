@@ -43,59 +43,46 @@
                                 </div>
                             </div>
                         
-                            <!-- Email -->
+                            <!-- cpf -->
                             <div class="row mb-3">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                                <label for="inputCpf" class="col-sm-2 col-form-label">Cpf</label>
                                 <div class="col-sm-10">
-                                    <input type="email" class="form-control" id="inputEmail3" placeholder="Digite o email">
+                                    <input type="number" class="form-control" id="inputCpf" placeholder="Digite o cpf">
                                 </div>
                             </div>
                         
-                            <!-- Endereço e Bairro -->
+                            <!-- Endereço  -->
                             <div class="row mb-3">
                                 <label for="inputEndereco" class="col-sm-2 col-form-label">Endereço</label>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" id="inputEndereco" placeholder="Digite o endereço">
                                 </div>
-                        
-                                <label for="inputBairro" class="col-sm-1 col-form-label">Bairro</label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control" id="inputBairro" placeholder="Digite o bairro">
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="inputTelefone" class="col-sm-2 col-form-label">Telefone</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="inputTelefone" placeholder="Digite o telefone">
                                 </div>
                             </div>
                         
-                            <!-- Tipo Cliente (Pessoa Jurídica ou Física) -->
-                            <fieldset class="row mb-3">
-                                <legend class="col-form-label col-sm-2 pt-0">Tipo Cliente</legend>
-                                <div class="col-sm-10">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="juridica" checked>
-                                        <label class="form-check-label" for="gridRadios1">Pessoa Jurídica</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="fisica">
-                                        <label class="form-check-label" for="gridRadios2">Pessoa Física</label>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        
                             <!-- Botões de Ação -->
                             <div class="text-center">
-                                <button id="insertButton" class="btn btn-primary">Enviar</button>
+                                <button id="cadastrarCliente" class="btn btn-primary">Cadastrar</button>
                                 <button id="deleteButton" class="btn btn-danger">Deletar</button>
                                 <button type="reset" class="btn btn-secondary">Limpar</button>
                             </div>
                         </form>
 
-                                        <!-- Tabela de Clientes -->
+                        <!-- Tabela de Clientes -->
                         <h5 class="card-title mt-4">Lista de Clientes</h5>
                         <table class="table" id="clientes-table">
                             <thead>
-                                <tr>
+                                <tr><th scope="col">ID</th>
                                     <th scope="col">Nome</th>
-                                    <th scope="col">Email</th>
+                                    <th scope="col">cpf</th>
                                     <th scope="col">Endereço</th>
-                                    <th scope="col">Bairro</th>
+                                    <th scope="col">telefone</th>
                                 </tr>
                             </thead>
                             <tbody id="clientes-list">

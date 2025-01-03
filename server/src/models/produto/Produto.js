@@ -3,17 +3,16 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../../config/database');
 
 const Produto = sequelize.define('Produto', {
-  nome: {
+  tipo: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  descricao: {
+  modelo: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  preco: {
-    type: DataTypes.FLOAT,
-    allowNull: false,
+  NumSerie: {
+    type: DataTypes.STRING(15), 
   },    
 }, {
   tableName: 'produto', // Nome da tabela no banco

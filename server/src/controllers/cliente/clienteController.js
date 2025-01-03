@@ -4,10 +4,10 @@ class ClienteController {
   
   // Adicionar um novo cliente
   async adicionarCliente(req, res) {
-    const { nome, email, endereco, bairro, tipo_cliente } = req.body;
+    const { nome, cpf, endereco, telefone } = req.body;
     try {
       console.log('Dados recebidos:', req.body);
-      const novoCliente = await Cliente.create({ nome, email, endereco, bairro, tipo_cliente });
+      const novoCliente = await Cliente.create({ nome, cpf, endereco, telefone });
       console.log('Cliente criado com sucesso:', novoCliente);
       res.status(201).json(novoCliente);
     } catch (error) {

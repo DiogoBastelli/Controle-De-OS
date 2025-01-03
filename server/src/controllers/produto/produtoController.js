@@ -4,10 +4,10 @@ class ProdutoController {
   
   // Adicionar um novo produto
   async adicionarProduto(req, res) {
-    const { nome, descricao, preco } = req.body;
+    const { tipo, modelo, NumSerie } = req.body;
     try {
       console.log('Dados recebidos:', req.body);
-      const novoProduto = await Produto.create({ nome, descricao, preco });
+      const novoProduto = await Produto.create({ tipo, modelo, NumSerie });
       console.log('Produto criado com sucesso:', novoProduto);
       res.status(201).json(novoProduto);
     } catch (error) {

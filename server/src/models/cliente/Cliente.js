@@ -3,25 +3,19 @@ const sequelize = require('../../config/database');
 
 const Cliente = sequelize.define('Cliente', {
   nome: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(100), 
     allowNull: false,
-  },
-  email: {
-    type: DataTypes.STRING,
+},
+cpf: {
+    type: DataTypes.STRING(100), 
     allowNull: false,
-  },
-  endereco: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  bairro: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  tipo_cliente: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },    
+},
+endereco: {
+    type: DataTypes.STRING(255), 
+},
+telefone: {
+    type: DataTypes.STRING(15), 
+},   
 }, {
   tableName: 'cliente', // Nome da tabela no banco
 });

@@ -1,10 +1,10 @@
-document.getElementById('insertButton').addEventListener('click', function(event) {
+document.getElementById('cadastrarCliente').addEventListener('click', function(event) {
     event.preventDefault(); // Evita o comportamento padrão do botão
 
     const nome = document.getElementById('inputNome').value;
-    const email = document.getElementById('inputEmail3').value;
+    const cpf = document.getElementById('inputCpf').value;
     const endereco = document.getElementById('inputEndereco').value;
-    const bairro = document.getElementById('inputBairro').value;
+    const telefone = document.getElementById('inputTelefone').value;
 
     // Chamada à API para enviar os dados
     fetch('http://localhost:3000/api/cliente', {
@@ -12,7 +12,7 @@ document.getElementById('insertButton').addEventListener('click', function(event
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ nome, email, endereco, bairro })
+        body: JSON.stringify({ nome, cpf, endereco, telefone })
     })
     .then(response => {
         if (!response.ok) {
@@ -82,9 +82,9 @@ function carregarClientes() {
                 novaLinha.innerHTML = `
                     <td>${cliente.id}</td>
                     <td>${cliente.nome}</td>
-                    <td>${cliente.email}</td>
+                    <td>${cliente.cpf}</td>
                     <td>${cliente.endereco}</td>
-                    <td>${cliente.bairro}</td>
+                    <td>${cliente.telefone}</td>
                     <td><button class="btn btn-info" onclick="preencherFormulario(${cliente.id})">Selecionar</button></td>
                 `;
                 tabelaClientes.appendChild(novaLinha);

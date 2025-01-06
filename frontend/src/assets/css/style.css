@@ -9,6 +9,15 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+form#cadastroProduto{
+  display: none;
+}
+.novoEstilo{
+  display: block;
+}
+h5#tituloCadastroProduto{
+  display: none;
+}
 .border-laranja {
   border-color: orange !important; /* ou a cor que você quiser */
 }

@@ -53,6 +53,17 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    //botao para fazer aparecer o formulario de cadastro do produto
+    const buttonAparecerFormularioDeCadastro = document.getElementById('btnMudarEstiloFormCadastro')
+    if (buttonAparecerFormularioDeCadastro) {
+        buttonAparecerFormularioDeCadastro.addEventListener('click', function (event) {
+            alert("clique")
+        const formulario = document.getElementById('cadastroProduto');
+        formulario.classList.toggle('novoEstilo');
+        });
+    }
+
+
     
 
     ///////////////////////////////////////////////////////////////////////////////////////

@@ -9,7 +9,7 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-form#cadastroProduto{
+form#cadastroProdutoF{
   display: none;
 }
 .novoEstilo{

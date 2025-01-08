@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    //funcao para mudar o combo box conforme o modelo selecionado
+    //funcao para mudar o combo box do modelo conforme o tipo selecionado
     atualizarModelos(inputTipo.value);  
     
     function atualizarModelos(tipoSelecionado) {
@@ -156,7 +156,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     <td>${produto.tipo}</td>
                     <td>${produto.modelo}</td>
                     <td>${produto.NumSerie}</td>
-                    <td><button class="btn btn-info" onclick="preencherFormulario(${produto.id})">Selecionar</button></td>
                 `;
                 tabelaprodutos.appendChild(novaLinha);
             });

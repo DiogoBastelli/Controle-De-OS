@@ -39,11 +39,11 @@
     <main >
         <button type="button " class="btn btn-primary" id="btnMudarEstiloFormCadastro">Cadastrar novo Produto</button>
 
-        <form id="cadastroProdutoF">
+        <form id="cadastroProdutoF" class="p-5 border border-black rounded-5 col-sm-6 mx-auto shadow p-3 mb-5 bg-body-tertiary rounded">
             <!-- tipo do Produto -->
             <div class="row mb-3">
                 <label for="inputTipo" class="col-sm-2 col-form-label">Tipo do Produto</label>
-                <div class="col-sm-4">
+                <div class="col-sm-8">
                     <select id="inputTipo" class="form-control" name="tipo">
                         <option value="microondas">Micro-ondas</option>
                         <option value="geladeira">Geladeira</option>
@@ -51,30 +51,33 @@
                     </select>
                 </div>
             </div>
-
+        
             <!-- modelo do Produto -->
             <div class="row mb-3">
                 <label for="inputModelo" class="col-sm-2 col-form-label">Modelo</label>
-                <div class="col-sm-4">
+                <div class="col-sm-8">
                     <select id="inputModelo" name="modelo" class="form-select" required>
                         <option value="" disabled selected>Selecione o modelo</option>
+                    </select>
                 </div>
             </div>
-
-            <!-- numero de serie  -->
+            
+            <!-- numero de serie -->
             <div class="row mb-3">
-                <label for="inputNumSerie" class="col-sm-2 col-form-label">Número de serie</label>
-                <div class="col-sm-4">
-                    <input type="number" class="form-control" id="inputNumSerie"
-                        placeholder="Digite o numero de serie">
+                <label for="inputNumSerie" class="col-sm-2 col-form-label">Número de série</label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control" id="inputNumSerie" placeholder="Digite o número de série">
                 </div>
             </div>
-
-            <div class="text-center">
+            
+            <!-- botoes de acao -->
+            <div class="text-center mt-4">
                 <button type="button" id="cadastrarProduto" class="btn btn-primary">Cadastrar</button>
                 <button type="button" id="btnFecharFormulario" class="btn btn-danger">Cancelar</button>
             </div> 
         </form>
+
+        
 
         <h5 class="card-title mt-4">Lista de Produtos</h5>
         <table class="table" id="produto-table">
@@ -86,7 +89,7 @@
                 <th scope="col">numero de serie</th>
                 </tr>
             </thead>
-            <tbody id="produto-list">
+            <tbody class="table" id="produto-list">
                 <!-- As linhas serão inseridas aqui -->
             </tbody>
         </table>

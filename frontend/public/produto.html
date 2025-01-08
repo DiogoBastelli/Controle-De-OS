@@ -43,18 +43,21 @@
             <!-- tipo do Produto -->
             <div class="row mb-3">
                 <label for="inputTipo" class="col-sm-2 col-form-label">Tipo do Produto</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputTipo"
-                        placeholder="Digite o tipo do produto">
+                <div class="col-sm-4">
+                    <select id="inputTipo" class="form-control" name="tipo">
+                        <option value="microondas">Micro-ondas</option>
+                        <option value="geladeira">Geladeira</option>
+                        <option value="purificador">Purificador</option>
+                    </select>
                 </div>
             </div>
 
             <!-- modelo do Produto -->
             <div class="row mb-3">
                 <label for="inputModelo" class="col-sm-2 col-form-label">Modelo</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputModelo"
-                        placeholder="Digite o tipo do produto">
+                <div class="col-sm-4">
+                    <select id="inputModelo" name="modelo" class="form-select" required>
+                        <option value="" disabled selected>Selecione o modelo</option>
                 </div>
             </div>
 

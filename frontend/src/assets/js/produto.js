@@ -1,10 +1,18 @@
 document.addEventListener('DOMContentLoaded', function () {
+    carregarProduto();
+
     const btnFecharFormulario = document.getElementById('btnFecharFormulario');
     const buttonAparecerFormularioDeCadastro = document.getElementById('btnMudarEstiloFormCadastro');
     const formulario = document.getElementById('cadastroProdutoF');
     const btncadastrarProduto = document.getElementById('cadastrarProduto');
-
-    carregarProduto();
+    const inputTipo = document.getElementById('inputTipo');
+    const inputModelo = document.getElementById('inputModelo');
+    const modelosPorTipo = {
+        microondas: ['MDA30', 'MDA40', 'MDA50'],
+        geladeira: ['BRM50', 'BRM60', 'BRM80'],
+        purificador: ['PFL100', 'PFL200'],
+        bebedouro: ['CPB30', 'CPB40', 'CPB50']
+    };
 
     //pesquisar produto
     const btnPesquisarProduto = document.getElementById('pesquisarProduto');
@@ -55,6 +63,29 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Ocorreu um erro ao carregar os dados do produto.');
         });
     }
+
+    //funcao para mudar o combo box conforme o modelo selecionado
+    atualizarModelos(inputTipo.value);  
+    
+    function atualizarModelos(tipoSelecionado) {
+        // Limpar modelos anteriores
+        inputModelo.innerHTML = '<option value="" disabled selected>Selecione o modelo</option>';
+
+        // Preencher os modelos com base no tipo selecionado
+        if (modelosPorTipo[tipoSelecionado]) {
+            modelosPorTipo[tipoSelecionado].forEach(modelo => {
+                const option = document.createElement('option');
+                option.value = modelo;
+                option.textContent = modelo;
+                inputModelo.appendChild(option);
+            });
+        }
+    }
+
+    // Atualizar o combo box de modelo ao mudar o tipo
+    inputTipo.addEventListener('change', function () {
+        atualizarModelos(inputTipo.value);
+    });
 
     //botao para fazer aparecer o formulario de cadastro do produto
     if (buttonAparecerFormularioDeCadastro && formulario) {

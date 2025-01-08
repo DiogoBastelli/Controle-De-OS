@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const btnFecharFormulario = document.getElementById('btnFecharFormulario');
+    const buttonAparecerFormularioDeCadastro = document.getElementById('btnMudarEstiloFormCadastro');
+    const formulario = document.getElementById('cadastroProdutoF');
+    const btncadastrarProduto = document.getElementById('cadastrarProduto');
 
     carregarProduto();
 
@@ -30,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error("Tabela 'resultPesquisa' não encontrada.");
                 return;
             }
-        
+
             const novaLinhaPesquisa = document.createElement('tr');
             novaLinhaPesquisa.innerHTML = `
                 <td>${produto.id}</td>
@@ -46,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 removerItem(botaoRemover);
             });
         })
-        
         .catch(error => {
             console.error('Erro:', error);
             alert('Ocorreu um erro ao carregar os dados do produto.');
@@ -54,66 +57,83 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     //botao para fazer aparecer o formulario de cadastro do produto
-    const buttonAparecerFormularioDeCadastro = document.getElementById('btnMudarEstiloFormCadastro');
-    const formulario = document.getElementById('cadastroProdutoF');
-
     if (buttonAparecerFormularioDeCadastro && formulario) {
         buttonAparecerFormularioDeCadastro.addEventListener('click', function () {
             // Exibir o formulário
             formulario.style.display = 'block';
-
         });
     }
 
-    const btnFecharFormulario = document.getElementById('btnFecharFormulario');
-    
-    
     // Evento para fechar o formulário
     if (btnFecharFormulario && formulario) {
         btnFecharFormulario.addEventListener('click', function (event) {
-            event.stopPropagation(); // Garante que o clique no botão não afete outros elementos
-            
-            formulario.style.background = 'blue'; // Apenas para testar o comportamento
-            console.log('Botão de fechar clicado.');
+            event.stopPropagation(); 
+            formulario.style.display = 'none'; 
         });
     }
 
+    // Botão 'cadastrarProduto'
+    if (btncadastrarProduto) {
+        btncadastrarProduto.addEventListener('click', function (event) {
+            event.preventDefault(); // Evita o comportamento padrão do botão]
 
+            const tipo = document.getElementById('inputTipo').value;
+            const modelo = document.getElementById('inputModelo').value;
+            const NumSerie = document.getElementById('inputNumSerie').value;
 
-
-    function carregarProduto() {
-        fetch('http://localhost:3000/api/produto')
+            fetch('http://localhost:3000/api/produto', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ tipo, modelo, NumSerie })
+            })
             .then(response => {
-                if (!response.ok) throw new Error('Erro ao buscar produtos');
+                console.log('Status da resposta:', response.status);
+                if (!response.ok) throw new Error('Erro na resposta da rede');
                 return response.json();
             })
-            .then(produtos => {
-                const tabelaprodutos = document.getElementById('produto-list');
-                if (!tabelaprodutos) {
-                    console.error("Tabela 'produto-list' não encontrada.");
-                    return;
-                }
-                tabelaprodutos.innerHTML = '';
-
-                produtos.forEach(produto => {
-                    const novaLinha = document.createElement('tr');
-                    novaLinha.innerHTML = `
-                        <td>${produto.id}</td>
-                        <td>${produto.tipo}</td>
-                        <td>${produto.modelo}</td>
-                        <td>${produto.NumSerie}</td>
-                        <td><button class="btn btn-info" onclick="preencherFormulario(${produto.id})">Selecionar</button></td>
-                    `;
-                    tabelaprodutos.appendChild(novaLinha);
-                });
+            .then(data => { 
+                console.log('Sucesso:', data);
+                alert('Produto cadastrado com sucesso!');
+                document.getElementById('cadastroProdutoF').reset();
+                carregarProduto();
             })
             .catch(error => {
                 console.error('Erro:', error);
-                alert('Ocorreu um erro ao carregar a lista de produtos.');
-            });
+                alert('Ocorreu um erro ao cadastrar o produto.');
+            });            
+        });
     }
 
-    
+    function carregarProduto() {
+        fetch('http://localhost:3000/api/produto')
+        .then(response => {
+            if (!response.ok) throw new Error('Erro ao buscar produtos');
+            return response.json();
+        })
+        .then(produtos => {
+            const tabelaprodutos = document.getElementById('produto-list');
+            if (!tabelaprodutos) {
+                console.error("Tabela 'produto-list' não encontrada.");
+                return;
+            }
+            tabelaprodutos.innerHTML = '';
 
-    
+            produtos.forEach(produto => {
+                const novaLinha = document.createElement('tr');
+                novaLinha.innerHTML = `
+                    <td>${produto.id}</td>
+                    <td>${produto.tipo}</td>
+                    <td>${produto.modelo}</td>
+                    <td>${produto.NumSerie}</td>
+                    <td><button class="btn btn-info" onclick="preencherFormulario(${produto.id})">Selecionar</button></td>
+                `;
+                tabelaprodutos.appendChild(novaLinha);
+            });
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Ocorreu um erro ao carregar a lista de produtos.');
+        });
+    }
+
 });

@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const btncadastrarProduto = document.getElementById('cadastrarProduto');
     const inputTipo = document.getElementById('inputTipo');
     const inputModelo = document.getElementById('inputModelo');
+    
     const modelosPorTipo = {
         microondas: ['MDA30', 'MDA40', 'MDA50'],
         geladeira: ['BRM50', 'BRM60', 'BRM80'],

@@ -28,11 +28,10 @@ class ClienteController {
 
   // Listar clientes com filtro usando parâmetros de rota
   async listarClienteFiltro(req, res) {
-    const { id } = req.params; // Captura o email da URL
+    const { id } = req.params; 
 
-    // Verifica se o email foi fornecido
     if (!id) {
-      return res.status(400).json({ error: 'O email é um parâmetro obrigatório.' });
+      return res.status(400).json({ error: 'O ID é um parâmetro obrigatório.' });
     }
 
     try {
@@ -41,9 +40,8 @@ class ClienteController {
 
       // Verifica se encontrou clientes
       if (clientes.length === 0) {
-        return res.status(404).json({ message: 'Nenhum cliente encontrado com o email fornecido.' });
+        return res.status(404).json({ message: 'Nenhum cliente encontrado com o id fornecido.' });
       }
-
       res.status(200).json(clientes);
     } catch (error) {
       res.status(500).json({ error: 'Erro ao buscar Clientes', descricao: error.message });

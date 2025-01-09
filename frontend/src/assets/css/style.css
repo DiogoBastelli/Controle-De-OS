@@ -9,11 +9,19 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+
+nav.header{
+  background-color: #eb9a04;
+}
+
 form{
   background-color: #f7f7f7;
   
 }
 form#cadastroProdutoF{
+  display: none;
+}
+form#cadastroClienteF{
   display: none;
 }
 .novoEstilo{

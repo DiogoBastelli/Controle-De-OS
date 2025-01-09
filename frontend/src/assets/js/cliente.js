@@ -1,68 +1,115 @@
-document.getElementById('cadastrarCliente').addEventListener('click', function(event) {
-    event.preventDefault(); // Evita o comportamento padrão do botão
+document.addEventListener('DOMContentLoaded', function () {
+    
+    const formulario = document.getElementById('cadastroClienteF')
 
-    const nome = document.getElementById('inputNome').value;
-    const cpf = document.getElementById('inputCpf').value;
-    const endereco = document.getElementById('inputEndereco').value;
-    const telefone = document.getElementById('inputTelefone').value;
-
-    // Chamada à API para enviar os dados
-    fetch('http://localhost:3000/api/cliente', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ nome, cpf, endereco, telefone })
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro na resposta da rede');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Sucesso:', data);
-        alert('Cliente cadastrado com sucesso!'); // Mensagem de sucesso
-
-        // Limpar o formulário
-        document.getElementById('cadastro-form').reset();
-
-        // Recarregar a tabela com todos os clientes
-        carregarClientes();
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-        alert('Ocorreu um erro ao cadastrar o cliente.'); // Mensagem de erro
-    });
-});
-
-document.getElementById('deleteButton').onclick = async function() {
-    const clienteId = prompt("Digite o ID do cliente que deseja deletar:"); // Solicita o ID do cliente
-    if (clienteId) {
-        const confirmDelete = confirm('Tem certeza que deseja deletar este cliente?');
-        if (confirmDelete) {
-            await deleteCliente(clienteId); // Chama a função para deletar o cliente
-            carregarClientes();
-        }
+    //botao para realizar a pesquisa de clientes
+    const btnPesquisarCliente = document.getElementById('pesquisarCliente')
+    if(btnPesquisarCliente){
+        btnPesquisarCliente.addEventListener('click' , function(event){
+            event.preventDefault(); // Evita o comportamento padrão do botão]
+            alert('botao de pesquisaar funcionando')
+            const idPesquisaCliente = document.getElementById('inputIdCliente').value
+            console.log(idPesquisaCliente)
+            pesquisarCliente(idPesquisaCliente);
+        })
     }
-};
+    //funcao para pesquisar o cliente
+    function pesquisarCliente(idPesquisaCliente) {
+        fetch(`http://localhost:3000/api/cliente/${idPesquisaCliente}`) 
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao adicionar cliente');
+                }
+                return response.json();
+            })
+            .then(clientes => {
+                console.log("cliente retornado da API:", clientes); 
+                const cliente = clientes[0];
+            
+                const tabelaResultPesquCliente = document.getElementById('resultClientes-list');
+                if (!tabelaResultPesquCliente) {
+                    console.error("Tabela 'resultClientes-list' não encontrada.");
+                    return;
+                }
+    
+                const novaLinhaPesquisa = document.createElement('tr');
+                novaLinhaPesquisa.innerHTML = `
+                    <td>${cliente.id}</td>
+                    <td>${cliente.nome}</td>
+                    <td>${cliente.cpf}</td>
+                    <td>${cliente.telefone}</td>
+                    <td><button class="btn btn-danger btn-sm remover-item">Remover</button></td>
+                `;
+                tabelaResultPesquCliente.appendChild(novaLinhaPesquisa);
+            
+                const botaoRemover = novaLinhaPesquisa.querySelector('.remover-item');
+                botaoRemover.addEventListener('click', function () {
+                    removerItem(botaoRemover);
+                });
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Ocorreu um erro ao carregar os dados do produto.');
+            });
+        }
 
-async function deleteCliente(id) {
-    try {
-        const response = await fetch(`http://localhost:3000/api/cliente/${id}`, {
-            method: 'DELETE', // Método para deletar
+    //botao para aparecer o formulario de cadastro do cliente
+    const btnAparecerFormCliente = document.getElementById('aparecerFormCliente');
+    if(btnAparecerFormCliente){
+        btnAparecerFormCliente.addEventListener('click' , function(event){
+            formulario.style.display = 'block';
+        })
+    }
+    //botao para fechar o formulario
+    const btnSumirFormCliente = document.getElementById('fecharFormCliente')
+    if(btnSumirFormCliente){
+        btnSumirFormCliente.addEventListener('click' , function(event){
+            formulario.style.display = 'none';
+        })
+    }
+
+    //botao para cadastrar o cliente
+    const btnCadastrarCliente = document.getElementById('cadastrarCliente')
+    if(btnCadastrarCliente){
+        btnCadastrarCliente.addEventListener('click', function (event) {
+            event.preventDefault(); // Evita o comportamento padrão do botão]
+            const nome = document.getElementById('inputNome').value;
+            const cpf = document.getElementById('inputCpf').value;
+            const endereco = document.getElementById('inputEndereco').value;
+            const telefone = document.getElementById('inputTelefone').value;
+
+            // Chamada à API para cadastrar o cliente
+            fetch('http://localhost:3000/api/cliente', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nome, cpf, endereco, telefone })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na resposta da rede');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Sucesso:', data);
+                alert('Cliente cadastrado com sucesso!'); // Mensagem de sucesso
+
+                // Limpar o formulário
+                document.getElementById('cadastroClienteF').reset();
+
+                // Recarregar a tabela com todos os clientes
+                carregarClientes();
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Ocorreu um erro ao cadastrar o cliente.'); // Mensagem de erro
+            });   
         });
-
-        if (response.ok) {
-            alert('Cliente deletado com sucesso!');
-            // Aqui você pode adicionar lógica para atualizar a interface, se necessário
-        } else {
-            alert('Erro ao deletar cliente');
-        }
-    } catch (error) {
-        console.error('Erro ao deletar cliente:', error);
     }
-}
+
+});
 
 // Função para carregar todos os clientes ao carregar a página
 function carregarClientes() {
@@ -96,30 +143,6 @@ function carregarClientes() {
         });
 }
 
-// Função para preencher o formulário com os dados do cliente selecionado
-function preencherFormulario(clienteId) {
-    fetch(`http://localhost:3000/api/cliente/${clienteId}`) // Supondo que essa rota retorne um cliente específico pelo ID
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro ao buscar cliente');
-            }
-            return response.json();
-        })
-        .then(cliente => {
-            // Preenche os campos do formulário com os dados do cliente
-            document.getElementById('inputNome').value = cliente.nome;
-            document.getElementById('inputEmail3').value = cliente.email;
-            document.getElementById('inputEndereco').value = cliente.endereco;
-            document.getElementById('inputBairro').value = cliente.bairro;
-
-            // Adiciona um atributo de ID ao formulário para saber que cliente está sendo editado
-            document.getElementById('cadastro-form').setAttribute('data-cliente-id', cliente.id);
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            alert('Ocorreu um erro ao carregar os dados do cliente.');
-        });
-}
 
 // Chama a função para carregar os clientes quando a página for carregada
 document.addEventListener('DOMContentLoaded', carregarClientes);

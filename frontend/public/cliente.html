@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8">
@@ -19,8 +19,6 @@
 </head>
 
 <body>
-    
-    
 
     <!-- ======= Main Content ======= -->
     <main id="main" class="main">
@@ -29,12 +27,15 @@
             <h1>Cadastro de Clientes</h1>
         </div><!-- End Page Title -->
 
+
+        <button id="aparecerFormCliente" class="btn btn-primary">abrir formulario</button>
+
         <section class="section">
             <div class="row">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Registrando o cliente</h5>
-                        <form  id="cadastro-form">
+                        <form  id="cadastroClienteF" class="p-5 border border-black rounded-5 col-sm-6 mx-auto shadow p-3 mb-5 bg-body-tertiary rounded">
                             <!-- Nome -->
                             <div class="row mb-3">
                                 <label for="inputNome" class="col-sm-2 col-form-label">Nome</label>
@@ -69,32 +70,59 @@
                             <!-- Botões de Ação -->
                             <div class="text-center">
                                 <button id="cadastrarCliente" class="btn btn-primary">Cadastrar</button>
-                                <button id="deleteButton" class="btn btn-danger">Deletar</button>
-                                <button type="reset" class="btn btn-secondary">Limpar</button>
+                                <button id="fecharFormCliente" class="btn btn-danger">Fechar</button>
+                                
                             </div>
                         </form>
 
-                        <!-- Tabela de Clientes -->
-                        <h5 class="card-title mt-4">Lista de Clientes</h5>
-                        <table class="table" id="clientes-table">
-                            <thead>
-                                <tr><th scope="col">ID</th>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">cpf</th>
-                                    <th scope="col">Endereço</th>
-                                    <th scope="col">telefone</th>
-                                </tr>
-                            </thead>
-                            <tbody id="clientes-list">
-                                <!-- As linhas serão inseridas aqui -->
-                            </tbody>
-                        </table>
+                        
                     </div>
                 </div>
             </div>
         </section>
 
-    </main><!-- End Main Content -->
+        <!-- Tabela de Clientes -->
+        <h5 class="card-title mt-4">Lista de Clientes</h5>
+        <table class="table" id="clientes-table">
+            <thead>
+                <tr><th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">cpf</th>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">telefone</th>
+                </tr>
+            </thead>
+            <tbody id="clientes-list">
+                <!-- As linhas serão inseridas aqui -->
+            </tbody>
+        </table>
+
+        <form id="FormPesquisarProduto">
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">ID do Produto</label>
+                <div class="col-sm-2">
+                    <input type="number" class="form-control" id="inputIdCliente" placeholder="Digite o ID do produto">
+                    <button type="submit" id="pesquisarCliente" class="btn btn-primary">Pesquisar</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Tabela da pesquisa de Clientes -->
+        <table class="table" id="resultClientes-table">
+            <thead>
+                <tr><th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">cpf</th>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">telefone</th>
+                </tr>
+            </thead>
+            <tbody id="resultClientes-list">
+                <!-- o Resultado da pesquisa serão inseridas aqui -->
+            </tbody>
+        </table>
+
+    </main>
 
     <script src="../src/assets/js/cliente.js"></script>
 </body>

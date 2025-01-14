@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Erro:', error);
                 alert('Ocorreu um erro ao carregar os dados do produto.');
             });
-        }
+    }
 
     //botao para aparecer o formulario de cadastro do cliente
     const btnAparecerFormCliente = document.getElementById('aparecerFormCliente');

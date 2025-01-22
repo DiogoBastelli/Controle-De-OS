@@ -17,7 +17,7 @@
         <div class="row mb-3">
             <label for="inputDonoPro" class="col-sm-2 col-form-label">Cliente</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" id="inputIdClienteProd" placeholder="Isira o cliente o id do cliente">
+                <input type="text" class="form-control" id="inputIdCliente" placeholder="Isira o id do cliente">
             </div>
         </div>
         
@@ -25,7 +25,7 @@
         <div class="row mb-3">
             <label for="inputNumSerieProd" class="col-sm-2 col-form-label">Número de série</label>
             <div class="col-sm-8">
-                <input type="number" class="form-control" id="inputNumSerieProd" placeholder="Digite o número de série">
+                <input type="number" class="form-control" id="inputIdProd" placeholder="Digite o número de série">
             </div>
         </div>
 
@@ -43,5 +43,21 @@
             <button type="button" id="btnFecharFormulario" class="btn btn-danger">Cancelar</button>
         </div> 
     </form>
+
+    <!-- Tabela das ordens de serviço -->
+    <h5 class="card-title mt-4">Lista de OS</h5>
+    <table class="table" id="os-table">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Produto</th>
+            </tr>
+        </thead>
+
+        <tbody id="os-list">
+            <!-- As linhas serão inseridas aqui -->
+        </tbody>
+    </table>
+    <script src="../src/assets/js/ordens.js"></script>
 </body>
 </html>

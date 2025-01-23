@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Cadastro de Produto</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Vendor CSS Files -->
+    <link href="../src/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../src/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="../src/assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <nav class="container header">
+        
+        
+        <div class="row justify-content-around">
+            <div class="col-auto">
+                <h2><a href="cliente.html">Clientes</a></h1>
+               </h2>
+            </div>
+            <div class="col-auto">
+                <h2><a href="produto.html">Produtos</a></h1>
+            </div>
+            <div class="col-auto">
+                <h2>Ordem de Serviço</h1>
+            </div>
+        </div>
+    </nav>
+
+    <main >
+        <button type="button " class="btn btn-primary" id="btnMudarEstiloFormCadastro">Cadastrar novo Produto</button>
+
+        <form id="cadastroProdutoF" class="p-5 border border-black rounded-5 col-sm-6 mx-auto shadow p-3 mb-5 bg-body-tertiary rounded">
+            <!-- tipo do Produto -->
+            <div class="row mb-3">
+                <label for="inputTipo" class="col-sm-2 col-form-label">Tipo do Produto</label>
+                <div class="col-sm-8">
+                    <select id="inputTipo" class="form-control" name="tipo">
+                        <option value="microondas">Micro-ondas</option>
+                        <option value="geladeira">Geladeira</option>
+                        <option value="purificador">Purificador</option>
+                    </select>
+                </div>
+            </div>
+        
+            <!-- modelo do Produto -->
+            <div class="row mb-3">
+                <label for="inputModelo" class="col-sm-2 col-form-label">Modelo</label>
+                <div class="col-sm-8">
+                    <select id="inputModelo" name="modelo" class="form-select" required>
+                        <option value="" disabled selected>Selecione o modelo</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- numero de serie -->
+            <div class="row mb-3">
+                <label for="inputNumSerie" class="col-sm-2 col-form-label">Número de série</label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control" id="inputNumSerie" placeholder="Digite o número de série">
+                </div>
+            </div>
+            
+            <!-- botoes de acao -->
+            <div class="text-center mt-4">
+                <button type="button" id="cadastrarProduto" class="btn btn-primary">Cadastrar</button>
+                <button type="button" id="btnFecharFormulario" class="btn btn-danger">Cancelar</button>
+            </div> 
+        </form>
+
+        <h5 class="card-title mt-4">Lista de Produtos</h5>
+        <table class="table" id="produto-table">
+            <thead>
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">modelo</th>
+                <th scope="col">numero de serie</th>
+                </tr>
+            </thead>
+            <tbody class="table" id="produto-list">
+                <!-- As linhas serão inseridas aqui -->
+            </tbody>
+        </table>
+
+            <form id="FormPesquisarProduto">
+                <!-- tipo do Produto -->
+                <div class="row mb-3">
+                    <label for="inputIdProduto" class="col-sm-2 col-form-label">ID do Produto</label>
+                    <div class="col-sm-2">
+                        <input type="number" class="form-control" id="inputIdProduto"
+                            placeholder="Digite o ID do produto">
+                    </div>
+                </div>
+            </form>
+
+            <button type="submit" id="pesquisarProduto" class="btn btn-primary">Pesquisar</button>
+
+            <table class="table" id="produto-result">
+                <thead>
+                    <tr><th scope="col">ID</th>
+                        <th scope="col">tipo</th>
+                        <th scope="col">modelo</th>
+                        <th scope="col">Numero de serie</th>
+                    </tr>
+                </thead>
+                <tbody id="resultPesquisa">
+                    <!-- As linhas serão inseridas aqui -->
+                </tbody>
+            </table>
+        </table>
+
+    </main><!-- End Main Content -->
+
+    <script src="../src/assets/js/produto.js"></script>
+</body>
+
+</html>

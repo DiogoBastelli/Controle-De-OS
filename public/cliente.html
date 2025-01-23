@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Cadastro de Clientes</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Vendor CSS Files -->
+    <link href="../src/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../src/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="../src/assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ======= Main Content ======= -->
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Cadastro de Clientes</h1>
+        </div><!-- End Page Title -->
+
+
+        <button id="aparecerFormCliente" class="btn btn-primary">abrir formulario</button>
+
+        <section class="section">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Registrando o cliente</h5>
+                        <form  id="cadastroClienteF" class="p-5 border border-black rounded-5 col-sm-6 mx-auto shadow p-3 mb-5 bg-body-tertiary rounded">
+                            <!-- Nome -->
+                            <div class="row mb-3">
+                                <label for="inputNome" class="col-sm-2 col-form-label">Nome</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputNome" placeholder="Digite o nome">
+                                </div>
+                            </div>
+                        
+                            <!-- cpf -->
+                            <div class="row mb-3">
+                                <label for="inputCpf" class="col-sm-2 col-form-label">Cpf</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="inputCpf" placeholder="Digite o cpf">
+                                </div>
+                            </div>
+                        
+                            <!-- Endereço  -->
+                            <div class="row mb-3">
+                                <label for="inputEndereco" class="col-sm-2 col-form-label">Endereço</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="inputEndereco" placeholder="Digite o endereço">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="inputTelefone" class="col-sm-2 col-form-label">Telefone</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="inputTelefone" placeholder="Digite o telefone">
+                                </div>
+                            </div>
+                        
+                            <!-- Botões de Ação -->
+                            <div class="text-center">
+                                <button id="cadastrarCliente" class="btn btn-primary">Cadastrar</button>
+                                <button id="fecharFormCliente" class="btn btn-danger">Fechar</button>
+                                
+                            </div>
+                        </form>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tabela de Clientes -->
+        <h5 class="card-title mt-4">Lista de Clientes</h5>
+        <table class="table" id="clientes-table">
+            <thead>
+                <tr><th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">cpf</th>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">telefone</th>
+                </tr>
+            </thead>
+            <tbody id="clientes-list">
+                <!-- As linhas serão inseridas aqui -->
+            </tbody>
+        </table>
+
+        <form id="FormPesquisarProduto">
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">ID do Produto</label>
+                <div class="col-sm-2">
+                    <input type="number" class="form-control" id="inputIdCliente" placeholder="Digite o ID do produto">
+                    <button type="submit" id="pesquisarCliente" class="btn btn-primary">Pesquisar</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Tabela da pesquisa de Clientes -->
+        <table class="table" id="resultClientes-table">
+            <thead>
+                <tr><th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">cpf</th>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">telefone</th>
+                </tr>
+            </thead>
+            <tbody id="resultClientes-list">
+                <!-- o Resultado da pesquisa serão inseridas aqui -->
+            </tbody>
+        </table>
+
+    </main>
+
+    <script src="../src/assets/js/cliente.js"></script>
+</body>
+
+</html>

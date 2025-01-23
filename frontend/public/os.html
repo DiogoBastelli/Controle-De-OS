@@ -11,7 +11,30 @@
 </head>
 <body>
 
-    <form id="cadastroOs" class="p-5 border border-black rounded-5 col-sm-6 mx-auto shadow p-3 mb-5 bg-body-tertiary rounded">
+    <form>
+        <input type="number" id="inputIdOs" placeholder="Insira o ID da OS para pesquisar">
+    </form>
+    <button id="btnPesquisaOs">Pesquisar OS</button>
+    
+    <h5 class="card-title mt-4">Resultado da pesquisa da OS</h5>
+    <table class="table" id="os-table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Número de Série</th>
+                <th scope="col">Ação</th>
+            </tr>
+        </thead>
+    
+        <tbody id="resultPesquisa">
+            <!-- Os resultados serão inseridos aqui -->
+        </tbody>
+    </table>
+    
+
+    <form id="cadastroOSF" class="p-5 border border-black rounded-5 col-sm-6 mx-auto shadow p-3 mb-5 bg-body-tertiary rounded">
 
         <!-- cliente  -->
         <div class="row mb-3">

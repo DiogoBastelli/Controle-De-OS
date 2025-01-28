@@ -21,6 +21,25 @@ h5#tituloCadastroProduto{
   display: flex;
   justify-content: right;
 }
+.letras{
+  font-size: larger;
+  font-weight: 600;
+}
+.statusAguardandoOrc{
+  background-color: #17a2b8;
+}
+.statusAguardandoAprovOrc{
+  background-color:#ffc107;
+}
+.statusAprovado{
+  background-color: #28a745;
+}
+.statusPronto{
+  background-color: rgba(231, 231, 124, 0.83);
+}
+.statusNaoAprovado{
+  background-color:#dc3545;
+}
 
 .logoConsel {
   width: 250px;

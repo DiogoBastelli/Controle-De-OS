@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     
   const formularioOs = document.getElementById('cadastroOSF');
+  const tabelaOs = document.getElementById('os-list');
 
   // Botão para cadastrar uma nova OS
   const btnCadastrarOs = document.getElementById('cadastrarOs');
@@ -45,32 +46,73 @@ document.addEventListener('DOMContentLoaded', function () {
   function carregarOs() {
     fetch('http://localhost:3000/api/os') 
     .then(response => {
-      if (!response.ok) {
-          throw new Error('Erro ao buscar OSs');
-      }
-      return response.json();
+        if (!response.ok) {
+            throw new Error('Erro ao buscar OSs');
+        }
+        return response.json();
     })
     .then(oss => {
-      const tabelaOs = document.getElementById('os-list');
-      tabelaOs.innerHTML = ''; 
+        
+        tabelaOs.innerHTML = ''; 
 
-      oss.forEach(os => {
-          const novaLinha = document.createElement('tr');
-          novaLinha.innerHTML = `
-              <td>${os.id}</td>
-              <td>${os.clienteNome}</td>
-              <td>${os.produtoModelo}</td>
-              <td>${os.produtoId}</td>
-              <td>${os.defeito}</td>
-          `;
-          tabelaOs.appendChild(novaLinha);
-      });
+        oss.forEach(os => {
+            const novaLinha = document.createElement('tr');
+            novaLinha.innerHTML = `
+                <td colspan="4">
+                    <div class="shadow rounded-4 mb-2 mt-2 border border-black p-4 letras d-flex align-items-center">
+                        <div class="me-5"> 
+                            <strong>ID: </strong>${os.id} 
+                            <strong>Nome: </strong>${os.clienteNome}  
+                            <strong>Produto: </strong>${os.produtoModelo} 
+                            <strong>ID Produto: </strong>${os.produtoId} 
+                            <strong>Defeito: </strong>${os.defeito}
+                        </div>
+
+                        <div class="form-group col-3 ms-auto ms-3"> 
+                            <select id="statusOs" class="form-select bg-info">
+                                <option value="aguardando-orcamento"> Aguardando Orçamento </option>
+                                <option value="aprovado"> Aprovado </option>
+                                <option value="nao-aprovado"> Não Aprovado </option>
+                                <option value="aguardando-aprovacao"> Aguardando Aprovação </option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+            `;
+            tabelaOs.appendChild(novaLinha);
+        });
+
+        const tabela = document.getElementById('os-list');
+        tabela.addEventListener('change', function(event) {
+            if (event.target && event.target.tagName === 'SELECT') {
+                mudarStatus(event.target);
+            }
+        });
     })
     .catch(error => {
         console.error('Erro:', error);
         alert('Ocorreu um erro ao carregar a lista de OSs.');
     });
-  }
+    }
+
+    //funcao para mudar status da os
+    function mudarStatus(select){
+        const valorSelecionado = select.value;
+    
+        select.classList.remove('bg-success', 'bg-danger', 'bg-info', 'bg-warning');
+    
+        if (valorSelecionado === 'aprovado') {
+            select.classList.add('bg-success');
+        } else if (valorSelecionado === 'nao-aprovado') {
+            select.classList.add('bg-danger');
+        } else if (valorSelecionado === 'aguardando-orcamento') {
+            select.classList.add('bg-info');
+        } else if (valorSelecionado === 'aguardando-aprovacao') {
+            select.classList.add('bg-warning');
+        }
+    }
+    
+
 
   // Botão para pesquisar OS 
   const btnPesquisarOs = document.getElementById('btnPesquisaOs');
@@ -121,6 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
         alert('Ocorreu um erro ao carregar os dados da OS.');
     });
   }
+
 
   carregarOs()
 });

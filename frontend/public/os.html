@@ -30,83 +30,79 @@
             </div>
         </nav>
     </header>
+    <main>
+        <!--
+        <form>
+            <input type="number" id="inputIdOs" placeholder="Insira o ID da OS para pesquisar">
+        </form>
+        <button id="btnPesquisaOs">Pesquisar OS</button>
+        
+        <h5 class="card-title mt-4">Resultado da pesquisa da OS</h5>
+        <table class="table" id="os-table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Modelo</th>
+                    <th scope="col">Número de Série</th>
+                    <th scope="col">Ação</th>
+                </tr>
+            </thead>
+        
+            <tbody id="resultPesquisa">
+                 Os resultados serão inseridos aqui
+            </tbody>
+        </table>
+        -->
+        
+        <button id="btnAparecerForm" class="btn btn-primary">Nova os</button>
 
-
+        <form id="cadastroOSF" class="p-5 border border-black rounded-5 col-sm-6 mx-auto shadow p-3 mb-5 bg-body-tertiary rounded">
     
+            <!-- cliente  -->
+            <div class="row mb-3">
+                <label for="inputDonoPro" class="col-sm-2 col-form-label">Cliente</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="inputIdCliente" placeholder="Isira o id do cliente">
+                </div>
+            </div>
+            
+            <!-- produto -->
+            <div class="row mb-3">
+                <label for="inputNumSerieProd" class="col-sm-2 col-form-label">Número de série</label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control" id="inputIdProd" placeholder="Digite o número de série">
+                </div>
+            </div>
+    
+            <!-- defeito -->
+            <div class="row mb-3">
+                <label for="inputDefeitoProd" class="col-sm-2 col-form-label">Defeito</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="inputDefeitoProd" placeholder="Digite o defeito do produto">
+                </div>
+            </div>
+            
+            <!-- botoes de acao -->
+            <div class="text-center mt-4">
+                <button type="button" id="cadastrarOs" class="btn btn-primary">Cadastrar</button>
+                <button type="button" id="btnFecharFormulario" class="btn btn-danger">Fechar</button>
+            </div> 
+        </form>
+    
+        <!-- Tabela das ordens de serviço -->
+        <div id="TodasOs">
+            <h1 class="d-flex justify-content-center mb-5 mt-4">Todas Ordens de serviço</h1>
+    
+            <table id="os-table" class="col-7 mx-auto">
+                <tbody id="os-list" >
+                    <!-- As linhas serão inseridas aqui -->
+                </tbody>
+            </table>
+        </div>
+    </main>
    
-    <form>
-        <input type="number" id="inputIdOs" placeholder="Insira o ID da OS para pesquisar">
-    </form>
-    <button id="btnPesquisaOs">Pesquisar OS</button>
-    
-    <h5 class="card-title mt-4">Resultado da pesquisa da OS</h5>
-    <table class="table" id="os-table">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Tipo</th>
-                <th scope="col">Modelo</th>
-                <th scope="col">Número de Série</th>
-                <th scope="col">Ação</th>
-            </tr>
-        </thead>
-    
-        <tbody id="resultPesquisa">
-            <!-- Os resultados serão inseridos aqui -->
-        </tbody>
-    </table>
-    
 
-    <form id="cadastroOSF" class="p-5 border border-black rounded-5 col-sm-6 mx-auto shadow p-3 mb-5 bg-body-tertiary rounded">
-
-        <!-- cliente  -->
-        <div class="row mb-3">
-            <label for="inputDonoPro" class="col-sm-2 col-form-label">Cliente</label>
-            <div class="col-sm-8">
-                <input type="text" class="form-control" id="inputIdCliente" placeholder="Isira o id do cliente">
-            </div>
-        </div>
-        
-        <!-- produto -->
-        <div class="row mb-3">
-            <label for="inputNumSerieProd" class="col-sm-2 col-form-label">Número de série</label>
-            <div class="col-sm-8">
-                <input type="number" class="form-control" id="inputIdProd" placeholder="Digite o número de série">
-            </div>
-        </div>
-
-        <!-- defeito -->
-        <div class="row mb-3">
-            <label for="inputDefeitoProd" class="col-sm-2 col-form-label">Defeito</label>
-            <div class="col-sm-8">
-                <input type="text" class="form-control" id="inputDefeitoProd" placeholder="Digite o defeito do produto">
-            </div>
-        </div>
-        
-        <!-- botoes de acao -->
-        <div class="text-center mt-4">
-            <button type="button" id="cadastrarOs" class="btn btn-primary">Cadastrar</button>
-            <button type="button" id="btnFecharFormulario" class="btn btn-danger">Cancelar</button>
-        </div> 
-    </form>
-
-    <!-- Tabela das ordens de serviço -->
-    <h5 class="card-title mt-4">Lista de OS</h5>
-    <table class="table" id="os-table">
-        <thead>
-            <tr>
-                <th scope="col">ID Cliente</th>
-                <th scope="col">Nome</th>
-                <th scope="col">ID Produto</th>
-                <th scope="col">Produto</th>
-                <th scope="col">Defeito</th>
-            </tr>
-        </thead>
-
-        <tbody id="os-list">
-            <!-- As linhas serão inseridas aqui -->
-        </tbody>
-    </table>
     <script src="../src/assets/js/ordens.js"></script>
 </body>
 </html>

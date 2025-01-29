@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
   const formularioOs = document.getElementById('cadastroOSF');
   const tabelaOs = document.getElementById('os-list');
-
+  const TodasOs = document.getElementById('TodasOs')
   // Botão para cadastrar uma nova OS
   const btnCadastrarOs = document.getElementById('cadastrarOs');
   if (btnCadastrarOs) {
@@ -32,6 +32,8 @@ document.addEventListener('DOMContentLoaded', function () {
               alert('OS cadastrada com sucesso!'); 
 
               formularioOs.reset();
+              formularioOs.style.display = 'none'
+              TodasOs.style.display = 'block'
 
               carregarOs();
           })
@@ -112,8 +114,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     
-
-
   // Botão para pesquisar OS 
   const btnPesquisarOs = document.getElementById('btnPesquisaOs');
   if (btnPesquisarOs) {
@@ -163,7 +163,21 @@ document.addEventListener('DOMContentLoaded', function () {
         alert('Ocorreu um erro ao carregar os dados da OS.');
     });
   }
-
-
+  // botao para aparecer formulario
+  const btnAparecerForm = document.getElementById('btnAparecerForm')
+  if (btnAparecerForm){
+        btnAparecerForm.addEventListener('click' , function(event){
+        formularioOs.style.display = 'block'
+        TodasOs.style.display = 'none'
+    })
+  }
+  //botao para fechar formulario
+  const btnFecharForm = document.getElementById('btnFecharFormulario')
+  if(btnFecharForm){
+    btnFecharForm.addEventListener('click' , function(event){
+        formularioOs.style.display = 'none'
+        TodasOs.style.display = 'block'
+    })
+  }
   carregarOs()
 });

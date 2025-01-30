@@ -7,6 +7,7 @@ console.log("Rota antes controller")
 router.post('/os', osController.adicionarOS);
 router.get('/os', osController.listarOS )
 router.get('/os/:id?', osController.listarOSPorId )
+router.patch('/os/:id' , osController.atualizarStatusOS)
 
 
 module.exports = router;

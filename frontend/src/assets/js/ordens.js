@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const formularioOs = document.getElementById('cadastroOSF');
   const tabelaOs = document.getElementById('os-list');
   const TodasOs = document.getElementById('TodasOs')
+  const status = 'AguardandoAprovacao';
+
   // Botão para cadastrar uma nova OS
   const btnCadastrarOs = document.getElementById('cadastrarOs');
   if (btnCadastrarOs) {
@@ -12,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
           const clienteId = document.getElementById('inputIdCliente').value;
           const produtoId = document.getElementById('inputIdProd').value;
           const defeito = document.getElementById('inputDefeitoProd').value;
+          
 
           // Chamada à API para cadastrar a OS
           fetch('http://localhost:3000/api/os', {
@@ -19,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
               headers: {
                   'Content-Type': 'application/json'
               },
-              body: JSON.stringify({ clienteId, produtoId, defeito })
+              body: JSON.stringify({ clienteId, produtoId, defeito , status})
           })
           .then(response => {
               if (!response.ok) {
@@ -63,15 +66,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 <td colspan="4">
                     <div class="shadow rounded-4 mb-2 mt-2 border border-black p-4 letras d-flex align-items-center">
                         <div class="me-5"> 
-                            <strong>ID: </strong>${os.id} 
-                            <strong>Nome: </strong>${os.clienteNome}  
-                            <strong>Produto: </strong>${os.produtoModelo} 
-                            <strong>ID Produto: </strong>${os.produtoId} 
-                            <strong>Defeito: </strong>${os.defeito}
+                            <span class="ms-3">${os.id}</span>
+                            <span class="ms-5">${os.clienteNome}</span>
+                            <span class="ms-5">${os.produtoModelo}</span>
+                            <span class="ms-5">${os.produtoId}</span>
+                            <span class="ms-5">${os.defeito}</span>
+                            <span class="ms-5">${os.status}</span>
                         </div>
 
-                        <div class="form-group col-3 ms-auto ms-3"> 
-                            <select id="statusOs" class="form-select bg-info">
+                        <div class="form-group col-3 ms-auto ms-3">
+                            <select id="statusOs" class="form-select bg-info" data-os-id="${os.id}">
                                 <option value="aguardando-orcamento"> Aguardando Orçamento </option>
                                 <option value="aprovado"> Aprovado </option>
                                 <option value="nao-aprovado"> Não Aprovado </option>
@@ -98,22 +102,52 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     //funcao para mudar status da os
-    function mudarStatus(select){
-        const valorSelecionado = select.value;
+    function mudarStatus(select) {
+        const osId = select.getAttribute("data-os-id");
+        const status = select.value;
     
-        select.classList.remove('bg-success', 'bg-danger', 'bg-info', 'bg-warning');
+        console.log("Alterando OS ID:", osId, "para status:", status);
     
-        if (valorSelecionado === 'aprovado') {
-            select.classList.add('bg-success');
-        } else if (valorSelecionado === 'nao-aprovado') {
-            select.classList.add('bg-danger');
-        } else if (valorSelecionado === 'aguardando-orcamento') {
-            select.classList.add('bg-info');
-        } else if (valorSelecionado === 'aguardando-aprovacao') {
-            select.classList.add('bg-warning');
-        }
+        fetch(`http://localhost:3000/api/os/${osId}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao atualizar status da OS');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Status atualizado com sucesso:", data);
+
+            const statusElement = select.closest('.shadow').querySelector('.ms-5:last-child');
+            if (statusElement) {
+                statusElement.textContent = status;
+            }
+    
+            select.classList.remove('bg-success', 'bg-danger', 'bg-info', 'bg-warning');
+            if (status === 'aprovado') {
+                select.classList.add('bg-success');
+                select.querySelector('option[value="aprovado"]').textContent = 'Aprovado';
+            } else if (status === 'nao-aprovado') {
+                select.classList.add('bg-danger');
+                select.querySelector('option[value="nao-aprovado"]').textContent = 'Não Aprovado';
+            } else if (status === 'aguardando-orcamento') {
+                select.classList.add('bg-info');
+                select.querySelector('option[value="aguardando-orcamento"]').textContent = 'Aguardando Orçamento';
+            } else if (status === 'aguardando-aprovacao') {
+                select.classList.add('bg-warning');
+                select.querySelector('option[value="aguardando-aprovacao"]').textContent = 'Aguardando Aprovação';
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Ocorreu um erro ao atualizar o status da OS.');
+        });
     }
-    
+     
   // Botão para pesquisar OS 
   const btnPesquisarOs = document.getElementById('btnPesquisaOs');
   if (btnPesquisarOs) {

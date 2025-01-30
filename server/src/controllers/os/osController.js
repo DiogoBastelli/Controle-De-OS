@@ -4,7 +4,7 @@ const Produto = require('../../models/produto/Produto');
 
 class OSController {
   async adicionarOS(req, res) {
-    const { clienteId, produtoId, defeito } = req.body;
+    const { clienteId, produtoId, defeito , status } = req.body;
 
     try {
       // Verifica se o cliente existe
@@ -26,6 +26,7 @@ class OSController {
         produtoId,
         produtoModelo: produto.modelo,
         defeito,
+        status: status || "aguardandoOrcamento",
       });
 
       console.log('OS criada com sucesso:', novaOS);
@@ -64,6 +65,28 @@ class OSController {
       res.status(500).json({ error: 'Erro ao buscar a OS' });
     }
   }
+
+  async atualizarStatusOS(req, res) {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    console.log("Recebendo requisição para atualizar OS:", id, "Novo status:", status); 
+
+    try {
+        const [updated] = await OS.update({ status }, { where: { id } });
+
+        if (updated) {
+            res.status(202).json({ message: 'Status da OS atualizado com sucesso!' });
+        } else {
+            res.status(404).json({ error: 'OS não encontrada' });
+        }
+    } catch (error) {
+        console.error('Erro ao atualizar status da OS:', error);
+        res.status(500).json({ error: 'Erro ao atualizar status da OS' });
+    }
+}
+
+
 
 }
 

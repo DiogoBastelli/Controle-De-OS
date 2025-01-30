@@ -27,6 +27,11 @@ const OS = sequelize.define('OS', {
     type: DataTypes.STRING(255),
     allowNull: false,
   },
+  status: {
+    type: DataTypes.STRING(255),
+    allowNull: false,
+    defaultValue: "aguardandoOrcamento",
+  },
 }, {
   tableName: 'os', // Nome da tabela no banco
 });

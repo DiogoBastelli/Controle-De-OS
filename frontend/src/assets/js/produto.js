@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const btncadastrarProduto = document.getElementById('cadastrarProduto');
     const inputTipo = document.getElementById('inputTipo');
     const inputModelo = document.getElementById('inputModelo');
+    const TodosProduto = document.getElementById('TodosProdutos');
+    const telaPesquisaProduto = document.getElementById('TelaPesquisaProduto')
     
     const modelosPorTipo = {
         microondas: ['MDA30', 'MDA40', 'MDA50'],
@@ -38,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("Produto retornado da API:", produtos); 
             const produto = produtos[0];
         
-            const tabelaResultadoPesquisa = document.getElementById('resultPesquisa');
+            const tabelaResultadoPesquisa = document.getElementById('resultPesquisaProduto');
             if (!tabelaResultadoPesquisa) {
                 console.error("Tabela 'resultPesquisa' não encontrada.");
                 return;
@@ -46,18 +48,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const novaLinhaPesquisa = document.createElement('tr');
             novaLinhaPesquisa.innerHTML = `
-                <td>${produto.id}</td>
-                <td>${produto.tipo}</td>
-                <td>${produto.modelo}</td>
-                <td>${produto.NumSerie}</td>
-                <td><button class="btn btn-danger btn-sm remover-item">Remover</button></td>
+                <td colspan="4">
+                    <div class="shadow rounded-4 mb-2 mt-2 border border-black p-4 letras d-flex align-items-center">
+                        <div class="me-5"> 
+                            <span class="ms-3">${produto.id}</span>
+                            <span class="ms-5">${produto.tipo}</span>
+                            <span class="ms-5">${produto.modelo}</span>
+                            <span class="ms-5">${produto.NumSerie}</span>
+                        </div>
+                    </div>
+                </td>
             `;
             tabelaResultadoPesquisa.appendChild(novaLinhaPesquisa);
-        
-            const botaoRemover = novaLinhaPesquisa.querySelector('.remover-item');
-            botaoRemover.addEventListener('click', function () {
-                removerItem(botaoRemover);
-            });
         })
         .catch(error => {
             console.error('Erro:', error);
@@ -93,6 +95,9 @@ document.addEventListener('DOMContentLoaded', function () {
         buttonAparecerFormularioDeCadastro.addEventListener('click', function () {
             // Exibir o formulário
             formulario.style.display = 'block';
+            TodosProduto.style.display = 'none'
+            telaPesquisaProduto.style.display = 'none'
+
         });
     }
 
@@ -101,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
         btnFecharFormulario.addEventListener('click', function (event) {
             event.stopPropagation(); 
             formulario.style.display = 'none'; 
+            TodosProduto.style.display = 'block'
         });
     }
 
@@ -127,6 +133,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log('Sucesso:', data);
                 alert('Produto cadastrado com sucesso!');
                 document.getElementById('cadastroProdutoF').reset();
+                TodosProduto.style.display = 'block'
+                formulario.style.display = 'none';
                 carregarProduto();
             })
             .catch(error => {
@@ -153,10 +161,16 @@ document.addEventListener('DOMContentLoaded', function () {
             produtos.forEach(produto => {
                 const novaLinha = document.createElement('tr');
                 novaLinha.innerHTML = `
-                    <td>${produto.id}</td>
-                    <td>${produto.tipo}</td>
-                    <td>${produto.modelo}</td>
-                    <td>${produto.NumSerie}</td>
+                    <td colspan="4">
+                    <div class="shadow rounded-4 mb-2 mt-2 border border-black p-4 letras d-flex align-items-center">
+                        <div class="me-5"> 
+                            <span class="ms-3">${produto.id}</span>
+                            <span class="ms-5">${produto.tipo}</span>
+                            <span class="ms-5">${produto.modelo}</span>
+                            <span class="ms-5">${produto.NumSerie}</span>
+                        </div>
+                    </div>
+                </td>
                 `;
                 tabelaprodutos.appendChild(novaLinha);
             });
@@ -167,4 +181,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    //botao para aparecer a tela de pesquisa de produto
+    const btnAparecerTelaPesquisaProduto = document.getElementById('btnAparecerTelaPesquisa')
+    if(btnAparecerTelaPesquisaProduto){
+        btnAparecerTelaPesquisaProduto.addEventListener('click' , function(event){
+            TodosProduto.style.display = 'none'
+            telaPesquisaProduto.style.display = 'block'
+            formulario.style.display = 'none';
+        })
+    }
 });

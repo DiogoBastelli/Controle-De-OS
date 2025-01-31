@@ -40,7 +40,7 @@
                 </div>
             </nav>
         </header>
-        
+        <button type="button " class="btn btn-primary" id="btnAparecerTelaPesquisa">Pesquisar Produto</button>
         <button type="button " class="btn btn-primary" id="btnMudarEstiloFormCadastro">Cadastrar novo Produto</button>
 
         <form id="cadastroProdutoF" class="p-5 border border-black rounded-5 col-sm-6 mx-auto shadow p-3 mb-5 bg-body-tertiary rounded">
@@ -81,23 +81,19 @@
             </div> 
         </form>
 
-        <h5 class="card-title mt-4">Lista de Produtos</h5>
-        <table class="table" id="produto-table">
-            <thead>
-                <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Tipo</th>
-                <th scope="col">modelo</th>
-                <th scope="col">numero de serie</th>
-                </tr>
-            </thead>
-            <tbody class="table" id="produto-list">
-                <!-- As linhas serão inseridas aqui -->
-            </tbody>
-        </table>
+        <div id="TodosProdutos">
+            <h1 class="d-flex justify-content-center mb-5 mt-4">Todos Produtos</h1>
 
+            <table class="col-7 mx-auto" id="produto-table">
+                <tbody class="table" id="produto-list">
+                    <!-- As linhas serão inseridas aqui -->
+                </tbody>
+            </table>
+        </div>
+        
+
+        <div id="TelaPesquisaProduto">
             <form id="FormPesquisarProduto">
-                <!-- tipo do Produto -->
                 <div class="row mb-3">
                     <label for="inputIdProduto" class="col-sm-2 col-form-label">ID do Produto</label>
                     <div class="col-sm-2">
@@ -106,22 +102,17 @@
                     </div>
                 </div>
             </form>
-
             <button type="submit" id="pesquisarProduto" class="btn btn-primary">Pesquisar</button>
 
-            <table class="table" id="produto-result">
-                <thead>
-                    <tr><th scope="col">ID</th>
-                        <th scope="col">tipo</th>
-                        <th scope="col">modelo</th>
-                        <th scope="col">Numero de serie</th>
-                    </tr>
-                </thead>
-                <tbody id="resultPesquisa">
+            <h1 class="d-flex justify-content-center mb-5 mt-4">Resultado da pesquisa do Produto</h1>
+            <table class="col-7 mx-auto">
+                <tbody id="resultPesquisaProduto">
                     <!-- As linhas serão inseridas aqui -->
                 </tbody>
             </table>
         </table>
+        </div>
+            
 
     </main><!-- End Main Content -->
 

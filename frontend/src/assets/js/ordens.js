@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const tabelaOs = document.getElementById('os-list');
   const TodasOs = document.getElementById('TodasOs')
   const status = 'AguardandoAprovacao';
+  const btnAparecerCampoDePesquisaOs = document.getElementById('divPesquisaOs')
 
   // Botão para cadastrar uma nova OS
   const btnCadastrarOs = document.getElementById('cadastrarOs');
@@ -179,18 +180,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const novaLinhaPesquisa = document.createElement('tr');
         novaLinhaPesquisa.innerHTML = `
-            <td>${os.id}</td>
-            <td>${os.clienteNome}</td>
-            <td>${os.produtoId}</td>
-            <td>${os.produtoModelo}</td>
-            <td><button class="btn btn-danger btn-sm remover-item">Remover</button></td>
+         <td colspan="4">
+            <div class="shadow rounded-4 mb-2 mt-2 border border-black p-4 letras d-flex align-items-center">
+                <div class="me-5"> 
+                    <span class="ms-3">${os.id}</span>
+                    <span class="ms-5">${os.clienteNome}</span>
+                    <span class="ms-5">${os.produtoModelo}</span>
+                    <span class="ms-5">${os.produtoId}</span>
+                    <span class="ms-5">${os.defeito}</span>
+                    <span class="ms-5">${os.status}</span>
+                </div>
+            </div>
+         </td>
         `;
         tabelaResultadoPesquisa.appendChild(novaLinhaPesquisa);
 
-        const botaoRemover = novaLinhaPesquisa.querySelector('.remover-item');
-        botaoRemover.addEventListener('click', function () {
-            removerItem(botaoRemover);
-        });
     })
     .catch(error => {
         console.error('Erro:', error);
@@ -201,8 +205,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const btnAparecerForm = document.getElementById('btnAparecerForm')
   if (btnAparecerForm){
         btnAparecerForm.addEventListener('click' , function(event){
+        btnAparecerCampoDePesquisaOs.style.display = 'none'
         formularioOs.style.display = 'block'
         TodasOs.style.display = 'none'
+        
     })
   }
   //botao para fechar formulario
@@ -211,6 +217,17 @@ document.addEventListener('DOMContentLoaded', function () {
     btnFecharForm.addEventListener('click' , function(event){
         formularioOs.style.display = 'none'
         TodasOs.style.display = 'block'
+        btnAparecerCampoDePesquisaOs.style.display = 'none'
+    })
+  }
+
+  //botao para aparecer o input de pesquisa para realizar nova pesquisa de os
+  const btnRealizarPesquisaOS = document.getElementById("btnAparecerFormPesquisa")
+  if(btnRealizarPesquisaOS){
+    btnRealizarPesquisaOS.addEventListener('click' , function(event){
+        TodasOs.style.display = 'none'
+        btnAparecerCampoDePesquisaOs.style.display = 'block'
+        formularioOs.style.display = 'none'
     })
   }
   carregarOs()

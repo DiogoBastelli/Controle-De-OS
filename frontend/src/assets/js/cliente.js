@@ -1,13 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
     
     const formulario = document.getElementById('cadastroClienteF')
+    const todosClientes = document.getElementById('TodosClientes')
+    const telaPesquisaCliente = document.getElementById('telaPesquisaCliente')
 
     //botao para realizar a pesquisa de clientes
     const btnPesquisarCliente = document.getElementById('pesquisarCliente')
     if(btnPesquisarCliente){
         btnPesquisarCliente.addEventListener('click' , function(event){
-            event.preventDefault(); // Evita o comportamento padrão do botão]
-            alert('botao de pesquisaar funcionando')
+            event.preventDefault(); 
             const idPesquisaCliente = document.getElementById('inputIdCliente').value
             console.log(idPesquisaCliente)
             pesquisarCliente(idPesquisaCliente);
@@ -34,18 +35,20 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 const novaLinhaPesquisa = document.createElement('tr');
                 novaLinhaPesquisa.innerHTML = `
-                    <td>${cliente.id}</td>
-                    <td>${cliente.nome}</td>
-                    <td>${cliente.cpf}</td>
-                    <td>${cliente.telefone}</td>
-                    <td><button class="btn btn-danger btn-sm remover-item">Remover</button></td>
+                   <td colspan="4">
+                    <div class="shadow rounded-4 mb-2 mt-2 border border-black p-4 letras d-flex align-items-center">
+                        <div class="me-5"> 
+                            <span class="ms-3">${cliente.id}</span>
+                            <span class="ms-5">${cliente.nome}</span>
+                            <span class="ms-5">${cliente.cpf}</span>
+                            <span class="ms-5">${cliente.endereco}</span>
+                            <span class="ms-5">${cliente.telefone}</span>
+                        </div>
+                    </div>
+                </td>
                 `;
                 tabelaResultPesquCliente.appendChild(novaLinhaPesquisa);
             
-                const botaoRemover = novaLinhaPesquisa.querySelector('.remover-item');
-                botaoRemover.addEventListener('click', function () {
-                    removerItem(botaoRemover);
-                });
             })
             .catch(error => {
                 console.error('Erro:', error);
@@ -58,8 +61,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if(btnAparecerFormCliente){
         btnAparecerFormCliente.addEventListener('click' , function(event){
             formulario.style.display = 'block';
+            todosClientes.style.display = 'none';
+            telaPesquisaCliente.style.display = 'none'
         })
     }
+
     //botao para fechar o formulario
     const btnSumirFormCliente = document.getElementById('fecharFormCliente')
     if(btnSumirFormCliente){
@@ -100,6 +106,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('cadastroClienteF').reset();
 
                 // Recarregar a tabela com todos os clientes
+                todosClientes.style.display = 'block'
+                formulario.style.display = 'none';
                 carregarClientes();
             })
             .catch(error => {
@@ -107,6 +115,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('Ocorreu um erro ao cadastrar o cliente.'); // Mensagem de erro
             });   
         });
+    }
+
+    //botao para aparecer a tela de pesquisa cliente
+    const btnAparecelerTelaPesquisaCliente = document.getElementById('aparecerTelaPesquisaCliente')
+    if(btnAparecelerTelaPesquisaCliente){
+        btnAparecelerTelaPesquisaCliente.addEventListener('click' , function(event){
+            todosClientes.style.display = 'none'
+            formulario.style.display = 'none';
+            telaPesquisaCliente.style.display = 'block'
+
+        })
     }
 
 });
@@ -127,12 +146,18 @@ function carregarClientes() {
             clientes.forEach(cliente => {
                 const novaLinha = document.createElement('tr');
                 novaLinha.innerHTML = `
-                    <td>${cliente.id}</td>
-                    <td>${cliente.nome}</td>
-                    <td>${cliente.cpf}</td>
-                    <td>${cliente.endereco}</td>
-                    <td>${cliente.telefone}</td>
-                    <td><button class="btn btn-info" onclick="preencherFormulario(${cliente.id})">Selecionar</button></td>
+                <td colspan="4">
+                    <div class="shadow rounded-4 mb-2 mt-2 border border-black p-4 letras d-flex align-items-center">
+                        <div class="me-5"> 
+                            <span class="ms-3">${cliente.id}</span>
+                            <span class="ms-5">${cliente.nome}</span>
+                            <span class="ms-5">${cliente.cpf}</span>
+                            <span class="ms-5">${cliente.endereco}</span>
+                            <span class="ms-5">${cliente.telefone}</span>
+                        </div>
+                    </div>
+                </td>
+                    
                 `;
                 tabelaClientes.appendChild(novaLinha);
             });
@@ -144,6 +169,6 @@ function carregarClientes() {
 }
 
 
-// Chama a função para carregar os clientes quando a página for carregada
+
 document.addEventListener('DOMContentLoaded', carregarClientes);
 

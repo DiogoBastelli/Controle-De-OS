@@ -16,107 +16,99 @@
 </head>
 
 <body>
-    <main id="main" class="main">
+    <header >
+        <imagens class="nomeConsel">
+            <img  class="mt-4 me-4 logoConsel " src="../src/imagem/consel-logo.png"  >
+        </imagens>
 
-        <div class="pagetitle">
-            <h1>Cadastro de Clientes</h1>
-        </div><!-- End Page Title -->
-
-
-        <button id="aparecerFormCliente" class="btn btn-primary">abrir formulario</button>
-
-        <section class="section">
-            <div class="row">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Registrando o cliente</h5>
-                        <form  id="cadastroClienteF" class="p-5 border border-black rounded-5 col-sm-6 mx-auto shadow p-3 mb-5 bg-body-tertiary rounded">
-                            <!-- Nome -->
-                            <div class="row mb-3">
-                                <label for="inputNome" class="col-sm-2 col-form-label">Nome</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputNome" placeholder="Digite o nome">
-                                </div>
-                            </div>
-                        
-                            <!-- cpf -->
-                            <div class="row mb-3">
-                                <label for="inputCpf" class="col-sm-2 col-form-label">Cpf</label>
-                                <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="inputCpf" placeholder="Digite o cpf">
-                                </div>
-                            </div>
-                        
-                            <!-- Endereço  -->
-                            <div class="row mb-3">
-                                <label for="inputEndereco" class="col-sm-2 col-form-label">Endereço</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="inputEndereco" placeholder="Digite o endereço">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="inputTelefone" class="col-sm-2 col-form-label">Telefone</label>
-                                <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="inputTelefone" placeholder="Digite o telefone">
-                                </div>
-                            </div>
-                        
-                            <!-- Botões de Ação -->
-                            <div class="text-center">
-                                <button id="cadastrarCliente" class="btn btn-primary">Cadastrar</button>
-                                <button id="fecharFormCliente" class="btn btn-danger">Fechar</button>
-                                
-                            </div>
-                        </form>
-
-                        
-                    </div>
+        <nav class="  p-2 mb-3 mt-4" id="cabecalho">
+            <div class="row justify-content-around">
+                <div class="col-auto">
+                    <h2><a href="cliente.html" >Clientes</a></h1>
+                   </h2>
+                </div>
+                <div class="col-auto">
+                    <h2><a href="produto.html">Produtos</a></h1>
+                </div>
+                <div class="col-auto">
+                    <h2><a href="os.html">Ordens de Serviço</a></h1>
                 </div>
             </div>
-        </section>
+        </nav>
+    </header>
 
-        <!-- Tabela de Clientes -->
-        <h5 class="card-title mt-4">Lista de Clientes</h5>
-        <table class="table" id="clientes-table">
-            <thead>
-                <tr><th scope="col">ID</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">cpf</th>
-                    <th scope="col">Endereço</th>
-                    <th scope="col">telefone</th>
-                </tr>
-            </thead>
-            <tbody id="clientes-list">
-                <!-- As linhas serão inseridas aqui -->
-            </tbody>
-        </table>
-
-        <form id="FormPesquisarProduto">
+    <button id="aparecerTelaPesquisaCliente" class="btn btn-primary">Pesquisa Cliente</button>
+    <button id="aparecerFormCliente" class="btn btn-primary">abrir formulario</button>
+    <main>
+        <!-- Formulario Cliente -->
+        <form  id="cadastroClienteF" class="p-5 border border-black rounded-5 col-sm-6 mx-auto shadow p-3 mb-5 bg-body-tertiary rounded">
+            <!-- Nome -->
             <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">ID do Produto</label>
-                <div class="col-sm-2">
-                    <input type="number" class="form-control" id="inputIdCliente" placeholder="Digite o ID do produto">
-                    <button type="submit" id="pesquisarCliente" class="btn btn-primary">Pesquisar</button>
+                <label for="inputNome" class="col-sm-2 col-form-label">Nome</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputNome" placeholder="Digite o nome">
                 </div>
+            </div>
+        
+            <!-- cpf -->
+            <div class="row mb-3">
+                <label for="inputCpf" class="col-sm-2 col-form-label">Cpf</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="inputCpf" placeholder="Digite o cpf">
+                </div>
+            </div>
+        
+            <!-- Endereço  -->
+            <div class="row mb-3">
+                <label for="inputEndereco" class="col-sm-2 col-form-label">Endereço</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputEndereco" placeholder="Digite o endereço">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="inputTelefone" class="col-sm-2 col-form-label">Telefone</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="inputTelefone" placeholder="Digite o telefone">
+                </div>
+            </div>
+        
+            <!-- Botões de Ação -->
+            <div class="text-center">
+                <button id="cadastrarCliente" class="btn btn-primary">Cadastrar</button>
+                <button id="fecharFormCliente" class="btn btn-danger">Fechar</button>
+                
             </div>
         </form>
 
-        <!-- Tabela da pesquisa de Clientes -->
-        <table class="table" id="resultClientes-table">
-            <thead>
-                <tr><th scope="col">ID</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">cpf</th>
-                    <th scope="col">Endereço</th>
-                    <th scope="col">telefone</th>
-                </tr>
-            </thead>
-            <tbody id="resultClientes-list">
-                <!-- o Resultado da pesquisa serão inseridas aqui -->
-            </tbody>
-        </table>
+        <!-- Todos Clientes -->
+        <div id="TodosClientes">
 
+            <h1 class="d-flex justify-content-center mb-5 mt-4">Todos Clientes</h1>  
+            <table class="col-7 mx-auto">
+                <tbody id="clientes-list">
+                    <!-- As linhas serão inseridas aqui -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Tela de pesquisa clientes -->
+        <div id="telaPesquisaCliente">
+            <form>
+                <input type="number" id="inputIdCliente" placeholder="Insira o ID do cliente">
+            </form>
+            <button id="pesquisarCliente">Pesquisar Cliente</button>
+
+            <h1 class="d-flex justify-content-center mb-5 mt-4">Resultado de pesquisa Cliente</h1>
+            <table class="col-7 mx-auto" id="resultClientes-table">
+
+                <tbody id="resultClientes-list">
+                    
+                </tbody>
+            </table>
+    
+        </div>
+        
     </main>
 
     <script src="../src/assets/js/cliente.js"></script>

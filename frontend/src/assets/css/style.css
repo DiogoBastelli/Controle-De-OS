@@ -1,7 +1,80 @@
-#cabecalho{
-  background-color: #fe9636;
-  border: 3px solid #000000;
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 8vh;
+  background-color: #000000;
+  position: relative; 
+  padding: 50px;
 }
+
+.logoConsel {
+  width: 250px;
+  height: auto;
+  position: absolute;
+  left: 50px; 
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: center; 
+  width: 100%; 
+  font-weight:600;
+}
+
+.nav-list li {
+  letter-spacing: 3px;
+  margin: 0 16px; 
+  font-size: 35px;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+a:hover {
+  opacity: 0.5;
+  text-decoration: none;
+}
+
+.container-wrapper{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container{
+  background-color: black;
+}
+
+.input-wrapper{
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 16px;
+  background-color: #ffffff;
+}
+
+.input-wrapper i{ 
+  color: #000000;
+  cursor: pointer;
+}
+.input-wrapper input{
+  background-color: transparent;
+  border: none;
+  color:#000000;
+  font-size: 20px;
+}
+
+.input-wrapper input:focus-visible{
+  outline: none;
+}
+
+
 form{
   background-color: #f7f7f7;
 }
@@ -41,24 +114,13 @@ h5#tituloCadastroProduto{
   background-color:#dc3545;
 }
 
-.logoConsel {
-  width: 250px;
-  height: auto;
-}
 
 .border-laranja {
   border-color: orange !important; 
 }
 
-a {
-  color: #000000;
-  text-decoration: none;
-}
 
-a:hover {
-  color: #000000;
-  text-decoration: none;
-}
+
 
 #cadastroOSF{
   display: none;

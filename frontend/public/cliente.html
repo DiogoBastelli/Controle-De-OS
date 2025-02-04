@@ -8,7 +8,7 @@
     <title>Cadastro de Clientes</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link href="../src/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../src/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="../src/assets/css/style.css" rel="stylesheet">
@@ -17,21 +17,20 @@
 
 <body>
     <header >
-        <imagens class="nomeConsel">
-            <img  class="mt-4 me-4 logoConsel " src="../src/imagem/consel-logo.png"  >
-        </imagens>
+        <nav>
+            <img  class="logoConsel " src="../src/imagem/consel-logo.png"  >
+            <ul class="nav-list">
+                <li><a href="cliente.html" >Clientes</a></li>
+                <li><a href="produto.html" >Produto</a></li>
+                <li><a href="os.html" >Os</a></li>
+            </ul>
 
-        <nav class="  p-2 mb-3 mt-4" id="cabecalho">
-            <div class="row justify-content-around">
-                <div class="col-auto">
-                    <h2><a href="cliente.html" >Clientes</a></h1>
-                   </h2>
-                </div>
-                <div class="col-auto">
-                    <h2><a href="produto.html">Produtos</a></h1>
-                </div>
-                <div class="col-auto">
-                    <h2><a href="os.html">Ordens de Serviço</a></h1>
+            <div class="container-wrapper">
+                <div class="container">
+                    <div class="input-wrapper">
+                        <input type="text" placeholder="Pesquisar cliente">
+                        <i class="fa fa-search" id="teste"></i>
+                    </div>
                 </div>
             </div>
         </nav>

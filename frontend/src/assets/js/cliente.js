@@ -128,7 +128,16 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     }
 
+    //icone de pesquisa
+    const iconePesquisa = document.getElementById('teste')
+    if(iconePesquisa){
+        iconePesquisa.addEventListener('click' , function(event){
+            alert('Funcionando')
+        })
+    }
+
 });
+
 
 // Função para carregar todos os clientes ao carregar a página
 function carregarClientes() {
@@ -167,6 +176,7 @@ function carregarClientes() {
             alert('Ocorreu um erro ao carregar a lista de clientes.');
         });
 }
+
 
 
 

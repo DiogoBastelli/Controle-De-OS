@@ -17,7 +17,7 @@
 
 <body>
     <header >
-        <nav>
+        <nav class="header">
             <img  class="logoConsel " src="../src/imagem/consel-logo.png"  >
             <ul class="nav-list">
                 <li><a href="cliente.html" >Clientes</a></li>
@@ -25,22 +25,25 @@
                 <li><a href="os.html" >Os</a></li>
             </ul>
 
+            
+                <i id="abrirFormCadastroCliente" class="fa-solid fa-pencil"></i>
+            
+
             <div class="container-wrapper">
                 <div class="container">
                     <div class="input-wrapper">
-                        <input type="text" placeholder="Pesquisar cliente">
+                        <input id="inputIdCliente" type="text" placeholder="Pesquisar cliente">
                         <i class="fa fa-search" id="teste"></i>
                     </div>
                 </div>
             </div>
+            
         </nav>
     </header>
 
-    <button id="aparecerTelaPesquisaCliente" class="btn btn-primary">Pesquisa Cliente</button>
-    <button id="aparecerFormCliente" class="btn btn-primary">abrir formulario</button>
     <main>
         <!-- Formulario Cliente -->
-        <form  id="cadastroClienteF" class="p-5 border border-black rounded-5 col-sm-6 mx-auto shadow p-3 mb-5 bg-body-tertiary rounded">
+        <form  id="cadastroClienteF" class="p-5 mt-4 border border-black rounded-5 col-sm-6 mx-auto shadow p-3 mb-5 bg-body-tertiary rounded">
             <!-- Nome -->
             <div class="row mb-3">
                 <label for="inputNome" class="col-sm-2 col-form-label">Nome</label>
@@ -93,10 +96,7 @@
         
         <!-- Tela de pesquisa clientes -->
         <div id="telaPesquisaCliente">
-            <form>
-                <input type="number" id="inputIdCliente" placeholder="Insira o ID do cliente">
-            </form>
-            <button id="pesquisarCliente">Pesquisar Cliente</button>
+            
 
             <h1 class="d-flex justify-content-center mb-5 mt-4">Resultado de pesquisa Cliente</h1>
             <table class="col-7 mx-auto" id="resultClientes-table">

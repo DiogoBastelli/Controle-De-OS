@@ -4,16 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const todosClientes = document.getElementById('TodosClientes')
     const telaPesquisaCliente = document.getElementById('telaPesquisaCliente')
 
-    //botao para realizar a pesquisa de clientes
-    const btnPesquisarCliente = document.getElementById('pesquisarCliente')
-    if(btnPesquisarCliente){
-        btnPesquisarCliente.addEventListener('click' , function(event){
-            event.preventDefault(); 
-            const idPesquisaCliente = document.getElementById('inputIdCliente').value
-            console.log(idPesquisaCliente)
-            pesquisarCliente(idPesquisaCliente);
-        })
-    }
     //funcao para pesquisar o cliente
     function pesquisarCliente(idPesquisaCliente) {
         fetch(`http://localhost:3000/api/cliente/${idPesquisaCliente}`) 
@@ -57,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     //botao para aparecer o formulario de cadastro do cliente
-    const btnAparecerFormCliente = document.getElementById('aparecerFormCliente');
+    const btnAparecerFormCliente = document.getElementById('abrirFormCadastroCliente');
     if(btnAparecerFormCliente){
         btnAparecerFormCliente.addEventListener('click' , function(event){
             formulario.style.display = 'block';
@@ -117,24 +107,31 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    //botao para aparecer a tela de pesquisa cliente
-    const btnAparecelerTelaPesquisaCliente = document.getElementById('aparecerTelaPesquisaCliente')
-    if(btnAparecelerTelaPesquisaCliente){
-        btnAparecelerTelaPesquisaCliente.addEventListener('click' , function(event){
-            todosClientes.style.display = 'none'
-            formulario.style.display = 'none';
-            telaPesquisaCliente.style.display = 'block'
-
-        })
-    }
+    
 
     //icone de pesquisa
-    const iconePesquisa = document.getElementById('teste')
-    if(iconePesquisa){
-        iconePesquisa.addEventListener('click' , function(event){
-            alert('Funcionando')
-        })
-    }
+    const iconePesquisa = document.getElementById('teste');
+
+if (iconePesquisa) {
+    iconePesquisa.addEventListener('click', function(event) {
+        const idPesquisaCliente = document.getElementById('inputIdCliente').value;
+        console.log(idPesquisaCliente);
+
+        // Chama a função, que já é assíncrona, e espera ela terminar
+        pesquisarCliente(idPesquisaCliente); // Não precisa do .then, pois a função já está tratando a Promise internamente
+
+        // Agora, se o cliente for encontrado, alteramos os displays (com base no retorno da função)
+        const clienteEncontrado = true; // Defina uma variável para indicar se o cliente foi encontrado ou não
+        if (clienteEncontrado) { // Caso tenha encontrado
+            telaPesquisaCliente.style.display = 'block';
+            todosClientes.style.display = 'none';
+        } else {
+            alert("Cliente não encontrado!");
+        }
+    });
+}
+
+
 
 });
 

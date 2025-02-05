@@ -107,31 +107,24 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    
-
     //icone de pesquisa
-    const iconePesquisa = document.getElementById('teste');
+    const iconePesquisa = document.getElementById('iconePesquisarCliente');
+    if (iconePesquisa) {
+        iconePesquisa.addEventListener('click', function(event) {
+            const idPesquisaCliente = document.getElementById('inputIdCliente').value;
+            console.log(idPesquisaCliente);
 
-if (iconePesquisa) {
-    iconePesquisa.addEventListener('click', function(event) {
-        const idPesquisaCliente = document.getElementById('inputIdCliente').value;
-        console.log(idPesquisaCliente);
+            pesquisarCliente(idPesquisaCliente); 
 
-        // Chama a função, que já é assíncrona, e espera ela terminar
-        pesquisarCliente(idPesquisaCliente); // Não precisa do .then, pois a função já está tratando a Promise internamente
-
-        // Agora, se o cliente for encontrado, alteramos os displays (com base no retorno da função)
-        const clienteEncontrado = true; // Defina uma variável para indicar se o cliente foi encontrado ou não
-        if (clienteEncontrado) { // Caso tenha encontrado
-            telaPesquisaCliente.style.display = 'block';
-            todosClientes.style.display = 'none';
-        } else {
-            alert("Cliente não encontrado!");
-        }
-    });
-}
-
-
+            const clienteEncontrado = true; 
+            if (clienteEncontrado) {
+                telaPesquisaCliente.style.display = 'block';
+                todosClientes.style.display = 'none';
+            } else {
+                alert("Cliente não encontrado!");
+            }
+        });
+    }
 
 });
 

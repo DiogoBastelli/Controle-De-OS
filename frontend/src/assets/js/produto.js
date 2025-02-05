@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     carregarProduto();
 
     const btnFecharFormulario = document.getElementById('btnFecharFormulario');
-    const buttonAparecerFormularioDeCadastro = document.getElementById('btnMudarEstiloFormCadastro');
+  
     const formulario = document.getElementById('cadastroProdutoF');
     const btncadastrarProduto = document.getElementById('cadastrarProduto');
     const inputTipo = document.getElementById('inputTipo');
@@ -17,14 +17,21 @@ document.addEventListener('DOMContentLoaded', function () {
         bebedouro: ['CPB30', 'CPB40', 'CPB50']
     };
 
-    //pesquisar produto
-    const btnPesquisarProduto = document.getElementById('pesquisarProduto');
-    if (btnPesquisarProduto) {
-        btnPesquisarProduto.addEventListener('click', function (event) {
-            event.preventDefault(); // Evita o comportamento padrão do botão]
+    //Icone pesquisar produto
+    const iconePesquisarProduto = document.getElementById('pesquisarProduto');
+    if (iconePesquisarProduto) {
+        iconePesquisarProduto.addEventListener('click', function (event) {
+           
             const idPesquisaProduto = document.getElementById('inputIdProduto').value
-            console.log(idPesquisaProduto)
             pesquisarProduto(idPesquisaProduto);
+
+            const produtoEncontrado = true; 
+            if (produtoEncontrado) {
+                telaPesquisaProduto.style.display = 'block';
+                TodosProduto.style.display = 'none';
+            } else {
+                alert("Produto não encontrado!");
+            }
         });
     } 
 
@@ -91,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     //botao para fazer aparecer o formulario de cadastro do produto
+    const buttonAparecerFormularioDeCadastro = document.getElementById('iconeAparecerFormCadastro');
     if (buttonAparecerFormularioDeCadastro && formulario) {
         buttonAparecerFormularioDeCadastro.addEventListener('click', function () {
             // Exibir o formulário

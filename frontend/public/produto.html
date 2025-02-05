@@ -8,12 +8,9 @@
     <title>Cadastro de Produto</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-
-    <!-- Vendor CSS Files -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link href="../src/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../src/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
     <link href="../src/assets/css/style.css" rel="stylesheet">
 
 </head>
@@ -21,28 +18,30 @@
 <body>
     <main >
         <header >
-            <imagens class="nomeConsel">
-                <img  class="mt-4 me-4 logoConsel " src="../src/imagem/consel-logo.png"  >
-            </imagens>
-    
-            <nav class="  p-2 mb-3 mt-4" id="cabecalho">
-                <div class="row justify-content-around">
-                    <div class="col-auto">
-                        <h2><a href="cliente.html" >Clientes</a></h1>
-                       </h2>
-                    </div>
-                    <div class="col-auto">
-                        <h2><a href="produto.html">Produtos</a></h1>
-                    </div>
-                    <div class="col-auto">
-                        <h2><a href="os.html">Ordens de Serviço</a></h1>
+            <nav class="header">
+                <img  class="logoConsel " src="../src/imagem/consel-logo.png"  >
+                <ul class="nav-list">
+                    <li><a href="cliente.html" >Clientes</a></li>
+                    <li><a href="produto.html" >Produto</a></li>
+                    <li><a href="os.html" >Os</a></li>
+                </ul>
+
+                <i id="iconeAparecerFormCadastro" class="fa-solid fa-pencil"></i>
+                
+                <div class="container-wrapper">
+                    <div class="container">
+                        <div class="input-wrapper">
+                            <input id="inputIdProduto" type="text" placeholder="Pesquisar Produto">
+                            <i class="fa fa-search" id="pesquisarProduto"></i>
+                        </div>
                     </div>
                 </div>
+                
             </nav>
         </header>
-        <button type="button " class="btn btn-primary" id="btnAparecerTelaPesquisa">Pesquisar Produto</button>
-        <button type="button " class="btn btn-primary" id="btnMudarEstiloFormCadastro">Cadastrar novo Produto</button>
 
+        </header>
+        
         <form id="cadastroProdutoF" class="p-5 border border-black rounded-5 col-sm-6 mx-auto shadow p-3 mb-5 bg-body-tertiary rounded">
             <!-- tipo do Produto -->
             <div class="row mb-3">
@@ -93,24 +92,12 @@
         
 
         <div id="TelaPesquisaProduto">
-            <form id="FormPesquisarProduto">
-                <div class="row mb-3">
-                    <label for="inputIdProduto" class="col-sm-2 col-form-label">ID do Produto</label>
-                    <div class="col-sm-2">
-                        <input type="number" class="form-control" id="inputIdProduto"
-                            placeholder="Digite o ID do produto">
-                    </div>
-                </div>
-            </form>
-            <button type="submit" id="pesquisarProduto" class="btn btn-primary">Pesquisar</button>
-
             <h1 class="d-flex justify-content-center mb-5 mt-4">Resultado da pesquisa do Produto</h1>
             <table class="col-7 mx-auto">
                 <tbody id="resultPesquisaProduto">
                     <!-- As linhas serão inseridas aqui -->
                 </tbody>
             </table>
-        </table>
         </div>
             
 

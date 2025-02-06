@@ -25,6 +25,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const idPesquisaProduto = document.getElementById('inputIdProduto').value
             pesquisarProduto(idPesquisaProduto);
 
+            if(idPesquisaProduto === ''){
+                alert('Insira o ID do Produto ')
+                return
+            }
+
             const produtoEncontrado = true; 
             if (produtoEncontrado) {
                 telaPesquisaProduto.style.display = 'block';

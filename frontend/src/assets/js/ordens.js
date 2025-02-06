@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
     
-  const formularioOs = document.getElementById('cadastroOSF');
+  const formularioOs = document.getElementById('FormCadastroOS');
   const tabelaOs = document.getElementById('os-list');
   const TodasOs = document.getElementById('TodasOs')
   const status = 'AguardandoAprovacao';
-  const btnAparecerCampoDePesquisaOs = document.getElementById('divPesquisaOs')
+  const telaPesquisaOs = document.getElementById('divPesquisaOs')
 
   // Botão para cadastrar uma nova OS
   const btnCadastrarOs = document.getElementById('cadastrarOs');
@@ -148,19 +148,6 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Ocorreu um erro ao atualizar o status da OS.');
         });
     }
-     
-  // Botão para pesquisar OS 
-  const btnPesquisarOs = document.getElementById('btnPesquisaOs');
-  if (btnPesquisarOs) {
-      btnPesquisarOs.addEventListener('click', function(event) {
-          event.preventDefault();
-          
-          const inputIdPesquisaOs = document.getElementById('inputIdOs');
-          const idOs = inputIdPesquisaOs.value;
-
-          pesquisarOs(idOs); 
-      });
-  }
 
   function pesquisarOs(idPesquisaOs) {
     fetch(`http://localhost:3000/api/os/${idPesquisaOs}`) 
@@ -201,34 +188,50 @@ document.addEventListener('DOMContentLoaded', function () {
         alert('Ocorreu um erro ao carregar os dados da OS.');
     });
   }
-  // botao para aparecer formulario
-  const btnAparecerForm = document.getElementById('btnAparecerForm')
-  if (btnAparecerForm){
-        btnAparecerForm.addEventListener('click' , function(event){
-        btnAparecerCampoDePesquisaOs.style.display = 'none'
-        formularioOs.style.display = 'block'
+  
+  //icone de pesquisa
+  const iconePesquisa = document.getElementById('iconePesquisarOs');
+    if (iconePesquisa) {
+        iconePesquisa.addEventListener('click', function(event) {
+        const idPesquisaOs = document.getElementById('inputIdOs').value;
+        console.log(idPesquisaOs);
+
+        if(idPesquisaOs === ''){
+            alert('Insira o ID da Ordem ')
+            return
+        }
+
+        pesquisarOs(idPesquisaOs); 
+
+        const osEncontrado = true; 
+        if (osEncontrado) {
+        telaPesquisaOs.style.display = 'block';
+        TodasOs.style.display = 'none';
+        } else {
+            alert("os não encontrado!");
+        }
+    });
+  }
+
+  // icone para aparecer formulario
+  const iconeAparecerForm = document.getElementById('aparecerFormCadastro')
+  if (iconeAparecerForm){
+    iconeAparecerForm.addEventListener('click' , function(event){
         TodasOs.style.display = 'none'
+        formularioOs.style.display = 'block'
         
     })
   }
+  
   //botao para fechar formulario
   const btnFecharForm = document.getElementById('btnFecharFormulario')
   if(btnFecharForm){
     btnFecharForm.addEventListener('click' , function(event){
         formularioOs.style.display = 'none'
         TodasOs.style.display = 'block'
-        btnAparecerCampoDePesquisaOs.style.display = 'none'
+        telaPesquisaOs.style.display = 'none'
     })
   }
 
-  //botao para aparecer o input de pesquisa para realizar nova pesquisa de os
-  const btnRealizarPesquisaOS = document.getElementById("btnAparecerFormPesquisa")
-  if(btnRealizarPesquisaOS){
-    btnRealizarPesquisaOS.addEventListener('click' , function(event){
-        TodasOs.style.display = 'none'
-        btnAparecerCampoDePesquisaOs.style.display = 'block'
-        formularioOs.style.display = 'none'
-    })
-  }
   carregarOs()
 });

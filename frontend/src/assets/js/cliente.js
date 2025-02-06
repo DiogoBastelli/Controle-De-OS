@@ -116,6 +116,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
             pesquisarCliente(idPesquisaCliente); 
 
+            if(idPesquisaCliente === ''){
+                alert('Insira o ID do Cliente ')
+                return
+            }
+
             const clienteEncontrado = true; 
             if (clienteEncontrado) {
                 telaPesquisaCliente.style.display = 'block';

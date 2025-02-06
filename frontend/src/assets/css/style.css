@@ -101,6 +101,9 @@ a:hover {
 form{
   background-color: #f7f7f7;
 }
+form#cadastroProduto{
+  display: none;
+}
 form#FormCadastroOS {
   display: none;
 }

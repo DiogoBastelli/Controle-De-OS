@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const btnFecharFormulario = document.getElementById('btnFecharFormulario');
   
-    const formulario = document.getElementById('cadastroProdutoF');
+    const formulario = document.getElementById('cadastroProduto');
     const btncadastrarProduto = document.getElementById('cadastrarProduto');
     const inputTipo = document.getElementById('inputTipo');
     const inputModelo = document.getElementById('inputModelo');
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => { 
                 console.log('Sucesso:', data);
                 alert('Produto cadastrado com sucesso!');
-                document.getElementById('cadastroProdutoF').reset();
+                document.getElementById('cadastroProduto').reset();
                 TodosProduto.style.display = 'block'
                 formulario.style.display = 'none';
                 carregarProduto();

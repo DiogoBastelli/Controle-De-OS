@@ -58,9 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return response.json();
     })
     .then(oss => {
-        
         tabelaOs.innerHTML = ''; 
-
         oss.forEach(os => {
             const novaLinha = document.createElement('tr');
             novaLinha.innerHTML = `
@@ -72,35 +70,51 @@ document.addEventListener('DOMContentLoaded', function () {
                             <span class="ms-5">${os.produtoModelo}</span>
                             <span class="ms-5">${os.produtoId}</span>
                             <span class="ms-5">${os.defeito}</span>
-                            <span class="ms-5">${os.status}</span>
+                            <span class="ms-5 status-text">${os.status}</span>
                         </div>
 
                         <div class="form-group col-3 ms-auto ms-3">
-                            <select id="statusOs" class="form-select bg-info" data-os-id="${os.id}">
-                                <option value="aguardando-orcamento"> Aguardando Orçamento </option>
-                                <option value="aprovado"> Aprovado </option>
-                                <option value="nao-aprovado"> Não Aprovado </option>
-                                <option value="aguardando-aprovacao"> Aguardando Aprovação </option>
+                            <select class="form-select status-select" data-os-id="${os.id}">
+                                <option value="aguardando-orcamento" ${os.status === 'aguardando-orcamento' ? 'selected' : ''}>Aguardando Orçamento</option>
+                                <option value="aprovado" ${os.status === 'aprovado' ? 'selected' : ''}>Aprovado</option>
+                                <option value="nao-aprovado" ${os.status === 'nao-aprovado' ? 'selected' : ''}>Não Aprovado</option>
+                                <option value="aguardando-aprovacao" ${os.status === 'aguardando-aprovacao' ? 'selected' : ''}>Aguardando Aprovação</option>
                             </select>
                         </div>
                     </div>
                 </td>
             `;
             tabelaOs.appendChild(novaLinha);
-        });
+            const selectElement = novaLinha.querySelector('.status-select');
 
-        const tabela = document.getElementById('os-list');
-        tabela.addEventListener('change', function(event) {
-            if (event.target && event.target.tagName === 'SELECT') {
-                mudarStatus(event.target);
+            function aplicarCor(select, status) {
+                select.classList.remove('bg-success', 'bg-danger', 'bg-info', 'bg-warning');
+
+                if (status === 'aprovado') {
+                    select.classList.add('bg-success');
+                } else if (status === 'nao-aprovado') {
+                    select.classList.add('bg-danger');
+                } else if (status === 'aguardando-orcamento') {
+                    select.classList.add('bg-info');
+                } else if (status === 'aguardando-aprovacao') {
+                    select.classList.add('bg-warning');
+                }
             }
+
+            aplicarCor(selectElement, os.status);
+
+            selectElement.addEventListener('change', function() {
+                aplicarCor(this, this.value);
+                mudarStatus(this);
+            });
         });
     })
     .catch(error => {
         console.error('Erro:', error);
         alert('Ocorreu um erro ao carregar a lista de OSs.');
     });
-    }
+}
+
 
     //funcao para mudar status da os
     function mudarStatus(select) {

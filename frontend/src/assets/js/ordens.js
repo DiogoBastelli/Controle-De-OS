@@ -1,55 +1,69 @@
 document.addEventListener('DOMContentLoaded', function () {
+
+    const formularioOs = document.getElementById('FormCadastroOS');
+    const tabelaOs = document.getElementById('os-list');
+    const TodasOs = document.getElementById('TodasOs')
+    const status = 'AguardandoAprovacao';
+    const telaPesquisaOs = document.getElementById('divPesquisaOs')
+
+    // clicando em cima da os ja cadastrada
+    document.addEventListener('click', function (event) {
+        let elemento = event.target.closest('.ordemServico'); // Verifica se clicou em uma OS
+        if (elemento) {
+            let osId = elemento.closest('.ordemServico').querySelector('span').innerText.trim(); 
+            alert('ID da OS: ' + osId);
+            
+            window.location.href = 'telaHistoricoOs.html?id=' + osId;
+
+        }
+    });
+     
     
-  const formularioOs = document.getElementById('FormCadastroOS');
-  const tabelaOs = document.getElementById('os-list');
-  const TodasOs = document.getElementById('TodasOs')
-  const status = 'AguardandoAprovacao';
-  const telaPesquisaOs = document.getElementById('divPesquisaOs')
 
-  // Botão para cadastrar uma nova OS
-  const btnCadastrarOs = document.getElementById('cadastrarOs');
-  if (btnCadastrarOs) {
-      btnCadastrarOs.addEventListener('click', function (event) {
-          event.preventDefault(); 
+    // Botão para cadastrar uma nova OS
+    const btnCadastrarOs = document.getElementById('cadastrarOs');
+    if (btnCadastrarOs) {
+        btnCadastrarOs.addEventListener('click', function (event) {
+            event.preventDefault(); 
 
-          const clienteId = document.getElementById('inputIdCliente').value;
-          const produtoId = document.getElementById('inputIdProd').value;
-          const defeito = document.getElementById('inputDefeitoProd').value;
-          
+            const clienteId = document.getElementById('inputIdCliente').value;
+            const produtoId = document.getElementById('inputIdProd').value;
+            const defeito = document.getElementById('inputDefeitoProd').value;
+            
 
-          // Chamada à API para cadastrar a OS
-          fetch('http://localhost:3000/api/os', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ clienteId, produtoId, defeito , status})
-          })
-          .then(response => {
-              if (!response.ok) {
-                  throw new Error('Erro ao cadastrar a OS');
-              }
-              return response.json();
-          })
-          .then(data => {
-              console.log('Sucesso:', data);
-              alert('OS cadastrada com sucesso!'); 
+            // Chamada à API para cadastrar a OS
+            fetch('http://localhost:3000/api/os', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ clienteId, produtoId, defeito , status})
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao cadastrar a OS');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Sucesso:', data);
+                alert('OS cadastrada com sucesso!'); 
 
-              formularioOs.reset();
-              formularioOs.style.display = 'none'
-              TodasOs.style.display = 'block'
+                formularioOs.reset();
+                formularioOs.style.display = 'none'
+                TodasOs.style.display = 'block'
 
-              carregarOs();
-          })
-          .catch(error => {
-              console.error('Erro:', error);
-              alert('Ocorreu um erro ao cadastrar a OS.'); 
-          });
-      });
-  }
+                carregarOs();
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Ocorreu um erro ao cadastrar a OS.'); 
+            });
+        });
+    }
 
-  // Função para carregar todas as OSs ao carregar a página
-  function carregarOs() {
+    // Função para carregar todas as OSs ao carregar a página
+    function carregarOs() {
     fetch('http://localhost:3000/api/os') 
     .then(response => {
         if (!response.ok) {
@@ -63,8 +77,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const novaLinha = document.createElement('tr');
             novaLinha.innerHTML = `
                 <td colspan="4">
-                    <div class="shadow rounded-4 mb-2 mt-2 border border-black p-4 letras d-flex align-items-center">
-                        <div class="me-5"> 
+                    <div class="  shadow rounded-4 mb-2 mt-2 border border-black  letras d-flex align-items-center">
+                        <div class= "ordemServico me-5 p-4" > 
                             <span class="ms-3">${os.id}</span>
                             <span class="ms-5">${os.clienteNome}</span>
                             <span class="ms-5">${os.produtoModelo}</span>
@@ -73,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <span class="ms-5 status-text">${os.status}</span>
                         </div>
 
-                        <div class="form-group col-3 ms-auto ms-3">
+                        <div class="form-group col-3 ms-auto ms-3 p-4">
                             <select class="form-select status-select" data-os-id="${os.id}">
                                 <option value="aguardando-orcamento" ${os.status === 'aguardando-orcamento' ? 'selected' : ''}>Aguardando Orçamento</option>
                                 <option value="aprovado" ${os.status === 'aprovado' ? 'selected' : ''}>Aprovado</option>
@@ -113,8 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('Erro:', error);
         alert('Ocorreu um erro ao carregar a lista de OSs.');
     });
-}
-
+    }
 
     //funcao para mudar status da os
     function mudarStatus(select) {
@@ -163,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-  function pesquisarOs(idPesquisaOs) {
+    function pesquisarOs(idPesquisaOs) {
     fetch(`http://localhost:3000/api/os/${idPesquisaOs}`) 
     .then(response => {
         if (!response.ok) {
@@ -201,10 +214,10 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('Erro:', error);
         alert('Ocorreu um erro ao carregar os dados da OS.');
     });
-  }
+    }
   
-  //icone de pesquisa
-  const iconePesquisa = document.getElementById('iconePesquisarOs');
+    //icone de pesquisa
+    const iconePesquisa = document.getElementById('iconePesquisarOs');
     if (iconePesquisa) {
         iconePesquisa.addEventListener('click', function(event) {
         const idPesquisaOs = document.getElementById('inputIdOs').value;
@@ -225,27 +238,27 @@ document.addEventListener('DOMContentLoaded', function () {
             alert("os não encontrado!");
         }
     });
-  }
+    }
 
-  // icone para aparecer formulario
-  const iconeAparecerForm = document.getElementById('aparecerFormCadastro')
-  if (iconeAparecerForm){
+    // icone para aparecer formulario
+    const iconeAparecerForm = document.getElementById('aparecerFormCadastro')
+    if (iconeAparecerForm){
     iconeAparecerForm.addEventListener('click' , function(event){
         TodasOs.style.display = 'none'
         formularioOs.style.display = 'block'
         
     })
-  }
+    }
   
-  //botao para fechar formulario
-  const btnFecharForm = document.getElementById('btnFecharFormulario')
-  if(btnFecharForm){
+    //botao para fechar formulario
+    const btnFecharForm = document.getElementById('btnFecharFormulario')
+    if(btnFecharForm){
     btnFecharForm.addEventListener('click' , function(event){
-        formularioOs.style.display = 'none'
-        TodasOs.style.display = 'block'
-        telaPesquisaOs.style.display = 'none'
+    formularioOs.style.display = 'none'
+    TodasOs.style.display = 'block'
+    telaPesquisaOs.style.display = 'none'
     })
-  }
+    }
 
-  carregarOs()
+    carregarOs()
 });

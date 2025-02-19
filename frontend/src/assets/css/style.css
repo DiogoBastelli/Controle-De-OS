@@ -178,3 +178,7 @@ h5#tituloCadastroProduto{
   font-size: 20px;
   border-radius: 10px;
 }
+
+#ordemServico{
+  cursor: pointer;
+}

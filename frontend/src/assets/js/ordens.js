@@ -10,10 +10,10 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('click', function (event) {
         let elemento = event.target.closest('.ordemServico'); // Verifica se clicou em uma OS
         if (elemento) {
-            let osId = elemento.closest('.ordemServico').querySelector('span').innerText.trim(); 
-            alert('ID da OS: ' + osId);
+            let clienteOsId = elemento.querySelectorAll('span')[1].innerText.trim(); 
+            alert('ID do cliente: ' + clienteOsId);
             
-            window.location.href = 'detalhes.html?id=' + osId;
+            window.location.href = 'detalhes.html?id=' + clienteOsId;
 
         }
     });
@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="  shadow rounded-4 mb-2 mt-2 border border-black  letras d-flex align-items-center">
                         <div class= "ordemServico me-5 p-4" > 
                             <span class="ms-3">${os.id}</span>
+                            <span class="ms-3">${os.clienteId}</span>
                             <span class="ms-5">${os.clienteNome}</span>
                             <span class="ms-5">${os.produtoModelo}</span>
                             <span class="ms-5">${os.produtoId}</span>

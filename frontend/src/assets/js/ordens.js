@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let osId = elemento.closest('.ordemServico').querySelector('span').innerText.trim(); 
             alert('ID da OS: ' + osId);
             
-            window.location.href = 'telaHistoricoOs.html?id=' + osId;
+            window.location.href = 'detalhes.html?id=' + osId;
 
         }
     });

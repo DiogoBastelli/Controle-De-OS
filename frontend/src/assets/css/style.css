@@ -179,6 +179,6 @@ h5#tituloCadastroProduto{
   border-radius: 10px;
 }
 
-#ordemServico{
+.ordemServico{
   cursor: pointer;
 }

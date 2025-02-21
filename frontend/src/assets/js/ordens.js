@@ -11,14 +11,13 @@ document.addEventListener('DOMContentLoaded', function () {
         let elemento = event.target.closest('.ordemServico'); // Verifica se clicou em uma OS
         if (elemento) {
             let clienteOsId = elemento.querySelectorAll('span')[1].innerText.trim(); 
-            alert('ID do cliente: ' + clienteOsId);
+            let produtoOsId = elemento.querySelectorAll('span')[4].innerText.trim(); 
+            alert('ID do cliente: ' + clienteOsId + ' ID Do Produto' + produtoOsId);
             
-            window.location.href = 'detalhes.html?id=' + clienteOsId;
+            window.location.href = `detalhes.html?idCliente=${clienteOsId}&idProduto=${produtoOsId}`;
 
         }
     });
-     
-    
 
     // Botão para cadastrar uma nova OS
     const btnCadastrarOs = document.getElementById('cadastrarOs');

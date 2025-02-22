@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ clienteId, produtoId, defeito , status})
+                body: JSON.stringify({ clienteId, produtoId, defeito})
             })
             .then(response => {
                 if (!response.ok) {
@@ -77,18 +77,18 @@ document.addEventListener('DOMContentLoaded', function () {
             novaLinha.innerHTML = `
                 <td colspan="4">
                     <div class="  shadow rounded-4 mb-2 mt-2 border border-black  letras d-flex align-items-center">
-                        <div class= "ordemServico me-5 p-4" > 
+                        <div class= " ordemServico me-5 p-4" > 
                             <span class="ms-3">${os.id}</span>
                             <span class="ms-3">${os.clienteId}</span>
                             <span class="ms-5">${os.clienteNome}</span>
                             <span class="ms-5">${os.produtoModelo}</span>
                             <span class="ms-5">${os.produtoId}</span>
                             <span class="ms-5">${os.defeito}</span>
-                            <span class="ms-5 status-text">${os.status}</span>
+                            <span class="ms-5">${os.status}</span>
                         </div>
 
-                        <div class="form-group col-3 ms-auto ms-3 p-4">
-                            <select class="form-select status-select" data-os-id="${os.id}">
+                        <div class=" form-group col-3 ms-auto ms-3 p-4">
+                            <select style="background-color: #0dcaf0 " class="form-select status-select" data-os-id="${os.id}">
                                 <option value="aguardando-orcamento" ${os.status === 'aguardando-orcamento' ? 'selected' : ''}>Aguardando Orçamento</option>
                                 <option value="aprovado" ${os.status === 'aprovado' ? 'selected' : ''}>Aprovado</option>
                                 <option value="nao-aprovado" ${os.status === 'nao-aprovado' ? 'selected' : ''}>Não Aprovado</option>

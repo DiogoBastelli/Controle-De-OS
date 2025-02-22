@@ -26,27 +26,33 @@ class ClienteController {
     }
   }
 
-  // Listar clientes com filtro usando parâmetros de rota
-  async listarClienteFiltro(req, res) {
-    const { id } = req.params; 
+  // Pesquisar cliente pelo CPF
+  // Pesquisar cliente pelo CPF
+async pesquisarCliente(req, res) {
+  const { cpf } = req.params; 
+  
+  console.log("CPF recebido na API:", cpf); // <-- Para testar
 
-    if (!id) {
-      return res.status(400).json({ error: 'O ID é um parâmetro obrigatório.' });
-    }
-
-    try {
-      // Busca os clientes filtrando pelo email
-      const clientes = await Cliente.findAll({ where: { id } });
-
-      // Verifica se encontrou clientes
-      if (clientes.length === 0) {
-        return res.status(404).json({ message: 'Nenhum cliente encontrado com o id fornecido.' });
-      }
-      res.status(200).json(clientes);
-    } catch (error) {
-      res.status(500).json({ error: 'Erro ao buscar Clientes', descricao: error.message });
-    }
+  if (!cpf) {
+      return res.status(400).json({ error: 'O CPF é um parâmetro obrigatório.' });
   }
+
+  try {
+      const cliente = await Cliente.findOne({ where: { cpf } });
+
+      if (!cliente) {
+          return res.status(404).json({ message: 'Nenhum cliente encontrado com o CPF fornecido.' });
+      }
+      
+      res.status(200).json(cliente);
+  } catch (error) {
+      console.error("Erro ao buscar cliente:", error);
+      res.status(500).json({ error: 'Erro ao buscar cliente', descricao: error.message });
+  }
+}
+
+
+
 
   // Atualizar informações de um cliente por `id`
   async atualizarInformacoesCliente(req, res) {

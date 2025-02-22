@@ -26,7 +26,7 @@ class OSController {
         produtoId,
         produtoModelo: produto.modelo,
         defeito,
-        status,
+        status: status || "aguardandoOrcamento",
       });
 
       console.log('OS criada com sucesso:', novaOS);

@@ -5,18 +5,22 @@ document.addEventListener('DOMContentLoaded', function () {
     const telaPesquisaCliente = document.getElementById('telaPesquisaCliente')
 
     //funcao para pesquisar o cliente
-    function pesquisarCliente(idPesquisaCliente) {
-        fetch(`http://localhost:3000/api/cliente/${idPesquisaCliente}`) 
+    function pesquisarCliente(CpfCliente) {
+        fetch(`http://localhost:3000/api/cliente/cpf/${CpfCliente}`)  // <-- Agora chama a rota certa
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Erro ao adicionar cliente');
+                    throw new Error(`Erro ao buscar cliente: ${response.statusText}`);
                 }
                 return response.json();
             })
-            .then(clientes => {
-                console.log("cliente retornado da API:", clientes); 
-                const cliente = clientes[0];
-            
+            .then(cliente => {
+                console.log("Cliente retornado da API:", cliente); 
+    
+                if (!cliente) {
+                    alert("Cliente não encontrado!");
+                    return;
+                }
+    
                 const tabelaResultPesquCliente = document.getElementById('resultClientes-list');
                 if (!tabelaResultPesquCliente) {
                     console.error("Tabela 'resultClientes-list' não encontrada.");
@@ -38,13 +42,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 </td>
                 `;
                 tabelaResultPesquCliente.appendChild(novaLinhaPesquisa);
-            
             })
             .catch(error => {
                 console.error('Erro:', error);
-                alert('Ocorreu um erro ao carregar os dados do produto.');
+                alert('Cliente não encontrado ou erro na API.');
             });
     }
+    
+    
 
     //botao para aparecer o formulario de cadastro do cliente
     const btnAparecerFormCliente = document.getElementById('abrirFormCadastroCliente');
@@ -111,13 +116,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const iconePesquisa = document.getElementById('iconePesquisarCliente');
     if (iconePesquisa) {
         iconePesquisa.addEventListener('click', function(event) {
-            const idPesquisaCliente = document.getElementById('inputIdCliente').value;
-            console.log(idPesquisaCliente);
+            const cpfClientePesquisa = document.getElementById('inputCpfCliente').value;
+            console.log(cpfClientePesquisa);
 
-            pesquisarCliente(idPesquisaCliente); 
+            pesquisarCliente(cpfClientePesquisa); 
 
-            if(idPesquisaCliente === ''){
-                alert('Insira o ID do Cliente ')
+            if(cpfClientePesquisa === ''){
+                alert('Insira o CPF do Cliente ')
                 return
             }
 

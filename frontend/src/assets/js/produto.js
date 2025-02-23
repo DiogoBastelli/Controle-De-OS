@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
             pesquisarProduto(idPesquisaProduto);
 
             if(idPesquisaProduto === ''){
-                alert('Insira o ID do Produto ')
+                alert('Insira o nº de serie do Produto ')
                 return
             }
 

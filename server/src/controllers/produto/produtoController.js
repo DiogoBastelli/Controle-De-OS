@@ -26,11 +26,11 @@ class ProdutoController {
     }
   }
 
-  async pesquisaItemUnico(req, res) {
+  async pesquisarProduto(req, res) {
     try {
-      const { id } = req.params;
-      console.log("chegou" , id)
-      const produto = await Produto.findAll({ where: { id } });
+      const { NumSerie } = req.params;
+      console.log("chegou" , NumSerie)
+      const produto = await Produto.findAll({ where: { NumSerie } });
       res.status(200).json(produto);
     } catch (error) {
       res.status(500).json({ error: 'Produto nao encotrado' });

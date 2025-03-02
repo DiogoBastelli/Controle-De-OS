@@ -4,38 +4,39 @@ const Produto = require('../../models/produto/Produto');
 
 class OSController {
   async adicionarOS(req, res) {
-    const { clienteId, produtoId, defeito , status } = req.body;
+    const { clienteCpf, ProdNumSerie, defeito, status } = req.body;
 
     try {
-      // Verifica se o cliente existe
-      const cliente = await Cliente.findByPk(clienteId);
-      if (!cliente) {
-        return res.status(404).json({ error: 'Cliente não encontrado.' });
-      }
+        // Verifica se o cliente existe
+        const cliente = await Cliente.findOne({ where: { cpf: clienteCpf } });
+        if (!cliente) {
+            return res.status(404).json({ message: 'Nenhum cliente encontrado com o CPF fornecido.' });
+        }
 
-      // Verifica se o produto existe
-      const produto = await Produto.findByPk(produtoId);
-      if (!produto) {
-        return res.status(404).json({ error: 'Produto não encontrado.' });
-      }
+        // Verifica se o produto existe
+        const produto = await Produto.findOne({ where: { NumSerie: ProdNumSerie } });
+        if (!produto) {
+            return res.status(404).json({ error: 'Produto não encontrado.' });
+        }
 
-      // Cria a OS com as informações do cliente e do produto
-      const novaOS = await OS.create({
-        clienteId,
-        clienteNome: cliente.nome,
-        produtoId,
-        produtoModelo: produto.modelo,
-        defeito,
-        status: status || "aguardandoOrcamento",
-      });
+        // Cria a OS
+        const novaOS = await OS.create({
+            clienteCpf: cliente.cpf,
+            clienteNome: cliente.nome,
+            ProdutoNumSerie: produto.NumSerie,
+            produtoModelo: produto.modelo,
+            defeito,
+            status: status || "aguardando-orcamento",
+        });
 
-      console.log('OS criada com sucesso:', novaOS);
-      res.status(201).json(novaOS);
+        console.log('OS criada com sucesso:', novaOS);
+        res.status(201).json(novaOS);
     } catch (error) {
-      console.error('Erro ao criar a OS:', error);
-      res.status(500).json({ error: 'Erro ao criar a OS', descricao: error.message });
+        console.error('Erro ao criar a OS:', error);
+        res.status(500).json({ error: 'Erro ao criar a OS', descricao: error.message });
     }
-  }
+  }  
+
 
   // Listar todas as OS
   async listarOS(req, res) {

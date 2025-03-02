@@ -27,14 +27,13 @@ class ClienteController {
   }
 
   // Pesquisar cliente pelo CPF
-  // Pesquisar cliente pelo CPF
 async pesquisarCliente(req, res) {
   const { cpf } = req.params; 
   
   console.log("CPF recebido na API:", cpf); // <-- Para testar
 
   if (!cpf) {
-      return res.status(400).json({ error: 'O CPF é um parâmetro obrigatório.' });
+    return res.status(400).json({ error: 'O CPF é um parâmetro obrigatório.' });
   }
 
   try {

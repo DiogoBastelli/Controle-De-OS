@@ -6,34 +6,34 @@ const OS = sequelize.define('OS', {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
-  },
-  clienteId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  clienteNome: {
+},
+clienteCpf: {
     type: DataTypes.STRING(100),
     allowNull: false,
-  },
-  produtoId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  produtoModelo: {
+},
+clienteNome: {
     type: DataTypes.STRING(100),
     allowNull: false,
-  },
-  defeito: {
+},
+ProdutoNumSerie: {
+    type: DataTypes.STRING(15),
+    allowNull: false, // Alterado para não permitir null
+},
+produtoModelo: {
+    type: DataTypes.STRING(100),
+    allowNull: false,
+},
+defeito: {
     type: DataTypes.STRING(255),
     allowNull: false,
-  },
-  status: {
+},
+status: {
     type: DataTypes.STRING(255),
     allowNull: false,
-    defaultValue: "aguardandoOrcamento",
-  },
+    defaultValue: "aguardando-orcamento",
+},
 }, {
-  tableName: 'os', // Nome da tabela no banco
+tableName: 'os',
 });
 
 module.exports = OS;

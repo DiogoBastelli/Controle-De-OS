@@ -7,34 +7,37 @@ class OSController {
     const { clienteCpf, ProdNumSerie, defeito, status } = req.body;
 
     try {
-        // Verifica se o cliente existe
-        const cliente = await Cliente.findOne({ where: { cpf: clienteCpf } });
-        if (!cliente) {
-            return res.status(404).json({ message: 'Nenhum cliente encontrado com o CPF fornecido.' });
-        }
-
-        // Verifica se o produto existe
-        const produto = await Produto.findOne({ where: { NumSerie: ProdNumSerie } });
-        if (!produto) {
-            return res.status(404).json({ error: 'Produto não encontrado.' });
-        }
-
-        // Cria a OS
-        const novaOS = await OS.create({
-            clienteCpf: cliente.cpf,
-            clienteNome: cliente.nome,
-            ProdutoNumSerie: produto.NumSerie,
-            produtoModelo: produto.modelo,
-            defeito,
-            status: status || "aguardando-orcamento",
-        });
-
-        console.log('OS criada com sucesso:', novaOS);
-        res.status(201).json(novaOS);
-    } catch (error) {
-        console.error('Erro ao criar a OS:', error);
-        res.status(500).json({ error: 'Erro ao criar a OS', descricao: error.message });
-    }
+      // Verifica se o cliente existe
+      const cliente = await Cliente.findOne({ where: { cpf: clienteCpf } });
+      if (!cliente) {
+          console.log('Cliente não encontrado:', clienteCpf);
+          return res.status(404).json({ message: 'Nenhum cliente encontrado com o CPF fornecido.' });
+      }
+  
+      // Verifica se o produto existe
+      const produto = await Produto.findOne({ where: { NumSerie: ProdNumSerie } });
+      if (!produto) {
+          console.log('Produto não encontrado:', ProdNumSerie);
+          return res.status(404).json({ error: 'Produto não encontrado.' });
+      }
+  
+      // Cria a OS
+      const novaOS = await OS.create({
+          clienteCpf: cliente.cpf,
+          clienteNome: cliente.nome,
+          ProdutoNumSerie: produto.NumSerie,
+          produtoModelo: produto.modelo,
+          defeito,
+          status: status || "aguardando-orcamento",
+      });
+  
+      console.log('OS criada com sucesso:', novaOS);
+      res.status(201).json(novaOS);
+  } catch (error) {
+      console.error('Erro ao buscar cliente/produto ou criar a OS:', error);
+      res.status(500).json({ error: 'Erro ao criar a OS', descricao: error.message });
+  }
+  
   }  
 
 

@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+
     // Botão para cadastrar uma nova OS
-    // Botão para cadastrar uma nova OS
-const btnCadastrarOs = document.getElementById('cadastrarOs');
-if (btnCadastrarOs) {
-    btnCadastrarOs.addEventListener('click', function (event) {
+    const btnCadastrarOs = document.getElementById('cadastrarOs');
+    if (btnCadastrarOs) {
+        btnCadastrarOs.addEventListener('click', function (event) {
         event.preventDefault();
 
         // Captura os valores dos campos
@@ -47,9 +47,9 @@ if (btnCadastrarOs) {
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Erro ao cadastrar a OS');
+                return response.json().then(err => { throw err; });
             }
-            return response.json();
+            
         })
         .then(data => {
             console.log('Sucesso:', data);
@@ -208,11 +208,11 @@ function carregarOs() {
             <div class="shadow rounded-4 mb-2 mt-2 border border-black p-4 letras d-flex align-items-center">
                 <div class="me-5"> 
                     <span class="ms-3">${os.id}</span>
-                    <span class="ms-5">${os.clienteNome}</span>
-                    <span class="ms-5">${os.produtoModelo}</span>
-                    <span class="ms-5">${os.ProdNumSerie}</span>
-                    <span class="ms-5">${os.defeito}</span>
-                    <span class="ms-5">${os.status}</span>
+                        <span class="ms-5">${os.clienteNome}</span>
+                        <span class="ms-5">${os.produtoModelo}</span>
+                        <span class="ms-5">${os.ProdutoNumSerie}</span>
+                        <span class="ms-5">${os.defeito}</span>
+                        <span class="ms-5 status-text">${os.status}</span>
                 </div>
             </div>
          </td>
@@ -239,11 +239,12 @@ function carregarOs() {
         }
 
         pesquisarOs(idPesquisaOs); 
-
         const osEncontrado = true; 
+
         if (osEncontrado) {
-        telaPesquisaOs.style.display = 'block';
-        TodasOs.style.display = 'none';
+            telaPesquisaOs.style.display = 'block';
+            TodasOs.style.display = 'none';
+            formularioOs.style.display = 'none'
         } else {
             alert("os não encontrado!");
         }

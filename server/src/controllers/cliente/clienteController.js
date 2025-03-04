@@ -30,7 +30,7 @@ class ClienteController {
 async pesquisarCliente(req, res) {
   const { cpf } = req.params; 
   
-  console.log("CPF recebido na API:", cpf); // <-- Para testar
+  console.log("CPF recebido na API:", cpf); 
 
   if (!cpf) {
     return res.status(400).json({ error: 'O CPF é um parâmetro obrigatório.' });

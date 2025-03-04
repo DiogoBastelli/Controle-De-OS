@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //funcao para pesquisar o cliente
     function pesquisarCliente(CpfCliente) {
-        fetch(`http://localhost:3000/api/cliente/cpf/${CpfCliente}`)  // <-- Agora chama a rota certa
+        fetch(`http://localhost:3000/api/cliente/cpf/${CpfCliente}`)  
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Erro ao buscar cliente: ${response.statusText}`);

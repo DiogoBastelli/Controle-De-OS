@@ -10,15 +10,14 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('click', function (event) {
         let elemento = event.target.closest('.ordemServico'); // Verifica se clicou em uma OS
         if (elemento) {
-            let clienteOsId = elemento.querySelectorAll('span')[1].innerText.trim(); 
-            let produtoOsId = elemento.querySelectorAll('span')[4].innerText.trim(); 
-            alert('ID do cliente: ' + clienteOsId + ' ID Do Produto' + produtoOsId);
+            let clienteOsId = elemento.querySelectorAll('span')[6].innerText.trim(); 
+            let produtoOsId = elemento.querySelectorAll('span')[5].innerText.trim(); 
+            alert('ID do cliente: ' + clienteOsId + ' ID Do Produto: ' + produtoOsId);
             
             window.location.href = `detalhes.html?idCliente=${clienteOsId}&idProduto=${produtoOsId}`;
 
         }
     });
-
 
     // Botão para cadastrar uma nova OS
     const btnCadastrarOs = document.getElementById('cadastrarOs');
@@ -89,9 +88,10 @@ function carregarOs() {
                             <span class="ms-3">${os.id}</span>
                             <span class="ms-5">${os.clienteNome}</span>
                             <span class="ms-5">${os.produtoModelo}</span>
-                            <span class="ms-5">${os.ProdutoNumSerie}</span>
                             <span class="ms-5">${os.defeito}</span>
                             <span class="ms-5 status-text">${os.status}</span>
+                            <span style="display:none" class="ms-5">${os.ProdutoNumSerie}</span>
+                            <span style="display:none" class="ms-5">${os.clienteCpf}</span>
                         </div>
 
                         <div class="form-group col-3 ms-auto ms-3 p-4">

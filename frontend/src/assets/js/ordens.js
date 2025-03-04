@@ -10,11 +10,12 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('click', function (event) {
         let elemento = event.target.closest('.ordemServico'); // Verifica se clicou em uma OS
         if (elemento) {
-            let clienteOsId = elemento.querySelectorAll('span')[6].innerText.trim(); 
-            let produtoOsId = elemento.querySelectorAll('span')[5].innerText.trim(); 
-            alert('ID do cliente: ' + clienteOsId + ' ID Do Produto: ' + produtoOsId);
+            const clienteOsId = elemento.querySelector('.os-Cpf').innerText.trim();
+            const produtoOsId = elemento.querySelector('.os-numSerie').innerText.trim();
+            const OsId = elemento.querySelector('.os-id').innerText.trim();
+            alert('ID do cliente: ' + clienteOsId + ' ID Do Produto: ' + produtoOsId + 'ID da Os: ' + OsId);
             
-            window.location.href = `detalhes.html?idCliente=${clienteOsId}&idProduto=${produtoOsId}`;
+            window.location.href = `detalhes.html?idCliente=${clienteOsId}&idProduto=${produtoOsId}&OsId=${OsId}`;
 
         }
     });
@@ -85,13 +86,13 @@ function carregarOs() {
                 <td colspan="4">
                     <div class="shadow rounded-4 mb-2 mt-2 border border-black letras d-flex align-items-center">
                         <div class="ordemServico me-5 p-4">
-                            <span class="ms-3">${os.id}</span>
+                            <span class="ms-3 os-id">${os.id}</span>
                             <span class="ms-5">${os.clienteNome}</span>
                             <span class="ms-5">${os.produtoModelo}</span>
                             <span class="ms-5">${os.defeito}</span>
                             <span class="ms-5 status-text">${os.status}</span>
-                            <span style="display:none" class="ms-5">${os.ProdutoNumSerie}</span>
-                            <span style="display:none" class="ms-5">${os.clienteCpf}</span>
+                            <span style="display:none" class="ms-5 os-numSerie">${os.ProdutoNumSerie}</span>
+                            <span style="display:none" class="ms-5 os-Cpf">${os.clienteCpf}</span>
                         </div>
 
                         <div class="form-group col-3 ms-auto ms-3 p-4">
@@ -179,6 +180,7 @@ function carregarOs() {
                 select.classList.add('bg-warning');
                 select.querySelector('option[value="aguardando-aprovacao"]').textContent = 'Aguardando Aprovação';
             }
+            carregarOs();
         })
         .catch(error => {
             console.error('Erro:', error);

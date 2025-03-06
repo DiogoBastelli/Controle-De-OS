@@ -47,6 +47,10 @@ function pesquisarDetalhesCliente(CpfCliente) {
                         <span class="ms-5">CPF: ${cliente.cpf}</span>
                         <span class="ms-5">Endereço: ${cliente.endereco}</span>
                         <span class="ms-5">Telefone: ${cliente.telefone}</span>
+                        <span class="ms-5">Bairro: ${cliente.bairro}</span>
+                        <span class="ms-5">Complemento: ${cliente.complemento}</span>
+                        <span class="ms-5">Cidade: ${cliente.cidade}</span>
+                        <span class="ms-5">Cep: ${cliente.cep}</span>  
                     </div>
                 </div>
             </td>

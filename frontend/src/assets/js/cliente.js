@@ -36,7 +36,11 @@ document.addEventListener('DOMContentLoaded', function () {
                             <span class="ms-5">${cliente.nome}</span>
                             <span class="ms-5">${cliente.cpf}</span>
                             <span class="ms-5">${cliente.endereco}</span>
-                            <span class="ms-5">${cliente.telefone}</span>
+                            <span class="ms-5">${cliente.telefone}</span> 
+                            <span class="ms-5">${cliente.bairro}</span>
+                            <span class="ms-5">${cliente.complemento}</span>
+                            <span class="ms-5">${cliente.cidade}</span>
+                            <span class="ms-5">${cliente.cep}</span>  
                         </div>
                     </div>
                 </td>
@@ -49,8 +53,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
     
-    
-
     //botao para aparecer o formulario de cadastro do cliente
     const btnAparecerFormCliente = document.getElementById('abrirFormCadastroCliente');
     if(btnAparecerFormCliente){
@@ -77,6 +79,10 @@ document.addEventListener('DOMContentLoaded', function () {
             const nome = document.getElementById('inputNome').value;
             const cpf = document.getElementById('inputCpf').value;
             const endereco = document.getElementById('inputEndereco').value;
+            const bairro = document.getElementById('inputBairro').value;
+            const cidade = document.getElementById('inputCidade').value;
+            const complemento = document.getElementById('inputComplemento').value;
+            const cep = document.getElementById('inputCep').value;
             const telefone = document.getElementById('inputTelefone').value;
 
             // Chamada à API para cadastrar o cliente
@@ -85,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ nome, cpf, endereco, telefone })
+                body: JSON.stringify({ nome, cpf, endereco, bairro , cidade , complemento , cep ,  telefone })
             })
             .then(response => {
                 if (!response.ok) {
@@ -138,10 +144,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-
 // Função para carregar todos os clientes ao carregar a página
 function carregarClientes() {
-    fetch('http://localhost:3000/api/cliente') // Rota que devolve todos os clientes
+    fetch('http://localhost:3000/api/cliente') 
         .then(response => {
             if (!response.ok) {
                 throw new Error('Erro ao buscar clientes');
@@ -163,6 +168,7 @@ function carregarClientes() {
                             <span class="ms-5">${cliente.cpf}</span>
                             <span class="ms-5">${cliente.endereco}</span>
                             <span class="ms-5">${cliente.telefone}</span>
+                            
                         </div>
                     </div>
                 </td>
@@ -176,9 +182,6 @@ function carregarClientes() {
             alert('Ocorreu um erro ao carregar a lista de clientes.');
         });
 }
-
-
-
 
 document.addEventListener('DOMContentLoaded', carregarClientes);
 

@@ -4,10 +4,10 @@ class ClienteController {
   
   // Adicionar um novo cliente
   async adicionarCliente(req, res) {
-    const { nome, cpf, endereco, telefone } = req.body;
+    const { nome, cpf, endereco, bairro , cidade , complemento , cep ,  telefone } = req.body;
     try {
       console.log('Dados recebidos:', req.body);
-      const novoCliente = await Cliente.create({ nome, cpf, endereco, telefone });
+      const novoCliente = await Cliente.create({ nome, cpf, endereco, bairro , cidade , complemento , cep ,  telefone  });
       console.log('Cliente criado com sucesso:', novoCliente);
       res.status(201).json(novoCliente);
     } catch (error) {
@@ -27,32 +27,30 @@ class ClienteController {
   }
 
   // Pesquisar cliente pelo CPF
-async pesquisarCliente(req, res) {
-  const { cpf } = req.params; 
+  async pesquisarCliente(req, res) {
+    const { cpf } = req.params; 
+    
+    console.log("CPF recebido na API:", cpf); 
+
+    if (!cpf) {
+      return res.status(400).json({ error: 'O CPF é um parâmetro obrigatório.' });
+    }
+
+    try {
+        const cliente = await Cliente.findOne({ where: { cpf } });
+
+        if (!cliente) {
+            return res.status(404).json({ message: 'Nenhum cliente encontrado com o CPF fornecido.' });
+        }
+        
+        res.status(200).json(cliente);
+    } catch (error) {
+        console.error("Erro ao buscar cliente:", error);
+        res.status(500).json({ error: 'Erro ao buscar cliente', descricao: error.message });
+    }
+  }
   
-  console.log("CPF recebido na API:", cpf); 
-
-  if (!cpf) {
-    return res.status(400).json({ error: 'O CPF é um parâmetro obrigatório.' });
-  }
-
-  try {
-      const cliente = await Cliente.findOne({ where: { cpf } });
-
-      if (!cliente) {
-          return res.status(404).json({ message: 'Nenhum cliente encontrado com o CPF fornecido.' });
-      }
-      
-      res.status(200).json(cliente);
-  } catch (error) {
-      console.error("Erro ao buscar cliente:", error);
-      res.status(500).json({ error: 'Erro ao buscar cliente', descricao: error.message });
-  }
-}
-
-
-
-
+/*
   // Atualizar informações de um cliente por `id`
   async atualizarInformacoesCliente(req, res) {
     const { id } = req.params;
@@ -79,6 +77,7 @@ async pesquisarCliente(req, res) {
       res.status(500).json({ error: 'Erro ao remover cliente' });
     }
   }
+    */
 }
 
 module.exports = new ClienteController();

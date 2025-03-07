@@ -4,7 +4,7 @@ const Produto = require('../../models/produto/Produto');
 
 class OSController {
   async adicionarOS(req, res) {
-    const { clienteCpf, ProdNumSerie, defeito, status } = req.body;
+    const { clienteCpf, ProdNumSerie, defeito, status , dataFormatada , horaFormatada } = req.body;
 
     try {
       // Verifica se o cliente existe
@@ -28,6 +28,8 @@ class OSController {
           ProdutoNumSerie: produto.NumSerie,
           produtoModelo: produto.modelo,
           defeito,
+          dataFormatada ,
+          horaFormatada,
           status: status || "aguardando-orcamento",
       });
   

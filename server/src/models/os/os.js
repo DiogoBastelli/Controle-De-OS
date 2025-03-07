@@ -17,7 +17,7 @@ clienteNome: {
 },
 ProdutoNumSerie: {
     type: DataTypes.STRING(15),
-    allowNull: false, // Alterado para não permitir null
+    allowNull: false, 
 },
 produtoModelo: {
     type: DataTypes.STRING(100),
@@ -31,6 +31,14 @@ status: {
     type: DataTypes.STRING(255),
     allowNull: false,
     defaultValue: "aguardando-orcamento",
+},
+dataFormatada: {
+    type: DataTypes.STRING(255),
+    allowNull: false,
+},
+horaFormatada: {
+    type: DataTypes.STRING(255),
+    allowNull: false,
 },
 }, {
 tableName: 'os',

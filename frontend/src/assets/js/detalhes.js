@@ -126,6 +126,8 @@ function pesquisarDetalhesOs(idOs) {
                 <div class="me-5"> 
                     <span class="ms-3">Os: ${os.id}</span>
                     <span class="ms-5 status-text">Status: ${os.status}</span>
+                    <span class="ms-5">data: ${os.dataFormatada}</span>
+                    <span class="ms-5 status-text">horario: ${os.horaFormatada}</span>
                 </div>
             </div>
          </td>

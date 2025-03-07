@@ -30,6 +30,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const clienteCpf = document.getElementById('inputIdCliente').value;
         const ProdNumSerie = document.getElementById('inputIdProd').value;
         const defeito = document.getElementById('inputDefeitoProd').value;
+        const dataHora = new Date();
+        const dataFormatada = dataHora.toLocaleDateString(); 
+        const horaFormatada = dataHora.toLocaleTimeString(); 
+
+        console.log(`Data: ${dataFormatada}`);
+        console.log(`Hora: ${horaFormatada}`);
+
 
         // Verifica se os campos obrigatórios estão preenchidos
         if (!clienteCpf || !ProdNumSerie || !defeito) {
@@ -43,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ clienteCpf, ProdNumSerie, defeito })
+            body: JSON.stringify({ clienteCpf, ProdNumSerie, defeito  , dataFormatada , horaFormatada})
         })
         .then(response => {
             if (!response.ok) {
@@ -69,76 +76,79 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 }
 
-// Função para carregar todas as OSs ao carregar a página
-function carregarOs() {
-    fetch('http://localhost:3000/api/os')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro ao buscar OSs');
-        }
-        return response.json();
-    })
-    .then(oss => {
-        tabelaOs.innerHTML = '';
-        oss.forEach(os => {
-            const novaLinha = document.createElement('tr');
-            novaLinha.innerHTML = `
-                <td colspan="4">
-                    <div class="shadow rounded-4 mb-2 mt-2 border border-black letras d-flex align-items-center">
-                        <div class="ordemServico me-5 p-4">
-                            <span class="ms-3 os-id">${os.id}</span>
-                            <span class="ms-5">${os.clienteNome}</span>
-                            <span class="ms-5">${os.produtoModelo}</span>
-                            <span class="ms-5">${os.defeito}</span>
-                            <span class="ms-5 status-text">${os.status}</span>
-                            <span style="display:none" class="ms-5 os-numSerie">${os.ProdutoNumSerie}</span>
-                            <span style="display:none" class="ms-5 os-Cpf">${os.clienteCpf}</span>
-                        </div>
-
-                        <div class="form-group col-3 ms-auto ms-3 p-4">
-                            <select style="background-color: #0dcaf0;" class="form-select status-select" data-os-id="${os.id}">
-                                <option value="aguardando-orcamento" ${os.status === 'aguardando-orcamento' ? 'selected' : ''}>Aguardando Orçamento</option>
-                                <option value="aprovado" ${os.status === 'aprovado' ? 'selected' : ''}>Aprovado</option>
-                                <option value="nao-aprovado" ${os.status === 'nao-aprovado' ? 'selected' : ''}>Não Aprovado</option>
-                                <option value="aguardando-aprovacao" ${os.status === 'aguardando-aprovacao' ? 'selected' : ''}>Aguardando Aprovação</option>
-                            </select>
-                        </div>
-                    </div>
-                </td>
-            `;
-            tabelaOs.appendChild(novaLinha);
-
-            const selectElement = novaLinha.querySelector('.status-select');
-
-            // Função para aplicar a cor com base no status
-            function aplicarCor(select, status) {
-                select.classList.remove('bg-success', 'bg-danger', 'bg-info', 'bg-warning');
-
-                if (status === 'aprovado') {
-                    select.classList.add('bg-success');
-                } else if (status === 'nao-aprovado') {
-                    select.classList.add('bg-danger');
-                } else if (status === 'aguardando-orcamento') {
-                    select.classList.add('bg-info');
-                } else if (status === 'aguardando-aprovacao') {
-                    select.classList.add('bg-warning');
-                }
+    // Função para carregar todas as OSs ao carregar a página
+    function carregarOs() {
+        fetch('http://localhost:3000/api/os')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao buscar OSs');
             }
+            return response.json();
+        })
+        .then(oss => {
+            tabelaOs.innerHTML = '';
+            oss.forEach(os => {
+                const novaLinha = document.createElement('tr');
+                novaLinha.innerHTML = `
+                    <td colspan="4">
+                        <div class="shadow rounded-4 mb-2 mt-2 border border-black letras d-flex align-items-center">
+                            <div class="ordemServico me-5 p-4">
+                                <span class="ms-3 os-id">${os.id}</span>
+                                <span class="ms-5">${os.clienteNome}</span>
+                                <span class="ms-5">${os.produtoModelo}</span>
+                                <span class="ms-5">${os.defeito}</span>
+                                <span class="ms-5 status-text">${os.status}</span>
+                                <span class="ms-5">${os.dataFormatada}</span>
+                                <span class="ms-5 status-text">${os.horaFormatada}</span>
+                                <span style="display:none" class="ms-5 os-numSerie">${os.ProdutoNumSerie}</span>
+                                <span style="display:none" class="ms-5 os-Cpf">${os.clienteCpf}</span>
+                                
+                            </div>
 
-            aplicarCor(selectElement, os.status);
+                            <div class="form-group col-3 ms-auto ms-3 p-4">
+                                <select style="background-color: #0dcaf0;" class="form-select status-select" data-os-id="${os.id}">
+                                    <option value="aguardando-orcamento" ${os.status === 'aguardando-orcamento' ? 'selected' : ''}>Aguardando Orçamento</option>
+                                    <option value="aprovado" ${os.status === 'aprovado' ? 'selected' : ''}>Aprovado</option>
+                                    <option value="nao-aprovado" ${os.status === 'nao-aprovado' ? 'selected' : ''}>Não Aprovado</option>
+                                    <option value="aguardando-aprovacao" ${os.status === 'aguardando-aprovacao' ? 'selected' : ''}>Aguardando Aprovação</option>
+                                </select>
+                            </div>
+                        </div>
+                    </td>
+                `;
+                tabelaOs.appendChild(novaLinha);
 
-            // Evento para mudar o status
-            selectElement.addEventListener('change', function() {
-                aplicarCor(this, this.value);
-                mudarStatus(this);
+                const selectElement = novaLinha.querySelector('.status-select');
+
+                // Função para aplicar a cor com base no status
+                function aplicarCor(select, status) {
+                    select.classList.remove('bg-success', 'bg-danger', 'bg-info', 'bg-warning');
+
+                    if (status === 'aprovado') {
+                        select.classList.add('bg-success');
+                    } else if (status === 'nao-aprovado') {
+                        select.classList.add('bg-danger');
+                    } else if (status === 'aguardando-orcamento') {
+                        select.classList.add('bg-info');
+                    } else if (status === 'aguardando-aprovacao') {
+                        select.classList.add('bg-warning');
+                    }
+                }
+
+                aplicarCor(selectElement, os.status);
+
+                // Evento para mudar o status
+                selectElement.addEventListener('change', function() {
+                    aplicarCor(this, this.value);
+                    mudarStatus(this);
+                });
             });
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Ocorreu um erro ao carregar a lista de OSs.');
         });
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-        alert('Ocorreu um erro ao carregar a lista de OSs.');
-    });
-}
+    }
 
     //funcao para mudar status da os
     function mudarStatus(select) {
@@ -215,6 +225,8 @@ function carregarOs() {
                         <span class="ms-5">${os.ProdutoNumSerie}</span>
                         <span class="ms-5">${os.defeito}</span>
                         <span class="ms-5 status-text">${os.status}</span>
+                        <span class="ms-5">${os.dataFormatada}</span>
+                        <span class="ms-5 status-text">${os.horaFormatada}</span>
                 </div>
             </div>
          </td>

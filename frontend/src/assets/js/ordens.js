@@ -5,10 +5,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const TodasOs = document.getElementById('TodasOs')
     const status = 'AguardandoAprovacao';
     const telaPesquisaOs = document.getElementById('divPesquisaOs')
+    const telaFiltroOs = document.getElementById('FiltroStatusOs')
 
     // clicando em cima da os ja cadastrada
     document.addEventListener('click', function (event) {
-        let elemento = event.target.closest('.ordemServico'); // Verifica se clicou em uma OS
+        let elemento = event.target.closest('.ordemServico'); 
         if (elemento) {
             const clienteOsId = elemento.querySelector('.os-Cpf').innerText.trim();
             const produtoOsId = elemento.querySelector('.os-numSerie').innerText.trim();
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Botão para cadastrar uma nova OS
-    const btnCadastrarOs = document.getElementById('cadastrarOs');
+    const btnCadastrarOs = document.getElementById('cadastrarOs')
     if (btnCadastrarOs) {
         btnCadastrarOs.addEventListener('click', function (event) {
         event.preventDefault();
@@ -72,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Ocorreu um erro ao cadastrar a OS.');
         });
     });
-}
+    }
 
     // Função para carregar todas as OSs ao carregar a página
     function carregarOs() {
@@ -240,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   
     //icone de pesquisa
-    const iconePesquisa = document.getElementById('iconePesquisarOs');
+    const iconePesquisa = document.getElementById('iconePesquisarOs')
     if (iconePesquisa) {
         iconePesquisa.addEventListener('click', function(event) {
         const idPesquisaOs = document.getElementById('inputIdOs').value;
@@ -283,16 +284,26 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     }
 
-    //digitando o status para pesquisar a OS
-    const btnPesquisarOsStatus = document.getElementById('btnPesquisarOsStatus')
-    if(btnPesquisarOsStatus){
-        btnPesquisarOsStatus.addEventListener('click' , function(event){
-            const statusSelecionado = document.getElementById('selectStatus').value;
-            console.log(statusSelecionado)
-            
-            pesquisarOsStatus(statusSelecionado)
-        })
-    }
+    //Select Filtra OS por status
+    document.getElementById('selectStatus').addEventListener('change', function () {
+        const statusSelecionado = this.value;
+
+        if (statusSelecionado === "todos") {
+            TodasOs.style.display = 'block'
+            formularioOs.style.display = 'none'
+            telaFiltroOs.style.display = 'none'
+            telaPesquisaOs.style.display = 'none'
+            carregarOs();
+            return;
+        }
+
+        console.log(statusSelecionado)
+        pesquisarOsStatus(statusSelecionado);
+        TodasOs.style.display = 'none'
+        formularioOs.style.display = 'none'
+        telaFiltroOs.style.display = 'block'
+        telaPesquisaOs.style.display = 'none'
+    });
     
     function pesquisarOsStatus(status) {
         fetch(`http://localhost:3000/api/os/status/${status}`) 
@@ -318,16 +329,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 const novaLinhaPesquisa = document.createElement('tr');
                 novaLinhaPesquisa.innerHTML = `
                  <td colspan="4">
-                    <div class="shadow rounded-4 mb-2 mt-2 border border-black p-4 letras d-flex align-items-center">
-                        <div class="me-5"> 
-                            <span class="ms-3">${os.id}</span>
-                            <span class="ms-5">${os.clienteNome}</span>
-                            <span class="ms-5">${os.produtoModelo}</span>
-                            <span class="ms-5">${os.ProdutoNumSerie}</span>
-                            <span class="ms-5">${os.defeito}</span>
-                            <span class="ms-5 status-text">${os.status}</span>
-                            <span class="ms-5">${os.dataFormatada}</span>
-                            <span class="ms-5 status-text">${os.horaFormatada}</span>
+                   <div class="shadow rounded-4 mb-2 mt-2 border border-black letras d-flex align-items-center">
+                        <div class="ordemServico me-5 p-4"> 
+                            <span class="ms-3 os-id">${os.id}</span>
+                                <span class="ms-5">${os.clienteNome}</span>
+                                <span class="ms-5">${os.clienteEndereco}</span>
+                                <span class="ms-5">${os.produtoModelo}</span>
+                                <span class="ms-5">${os.defeito}</span>
+                                <span class="ms-5 status-text">${os.status}</span>
+                                <span class="ms-5">${os.dataFormatada}</span>
+                                <span class="ms-5 status-text">${os.horaFormatada}</span>
+                                <span style="display:none" class="ms-5 os-numSerie">${os.ProdutoNumSerie}</span>
+                                <span style="display:none" class="ms-5 os-Cpf">${os.clienteCpf}</span>
                         </div>
                     </div>
                  </td>

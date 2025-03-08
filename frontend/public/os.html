@@ -20,7 +20,15 @@
                 <li><a href="os.html" >Os</a></li>
             </ul>
 
-                <i id="aparecerFormCadastro" class="fa-solid fa-pencil"></i>
+            <i id="aparecerFormCadastro" class="fa-solid fa-pencil"></i>
+
+            <select id="selectStatus" class="form-select"  >
+                <option value="todos">Todos</option>
+                <option value="aguardando-orcamento">Aguardando Orçamento</option>
+                <option value="aprovado">Aprovado</option>
+                <option value="nao-aprovado">Não Aprovado</option>
+                <option value="aguardando-aprovacao">Aguardando Aprovação</option>
+            </select>
 
             <div class="container-wrapper">
                 <div class="container">
@@ -34,7 +42,7 @@
         </nav>
     </header>
     <main>       
-         <!-- tela da Pesquisa de OS -->
+        <!-- tela da Pesquisa de OS -->
         <div id="divPesquisaOs">            
             <h1 class="d-flex justify-content-center mb-5 mt-4">Resultado da pesquisa da OS</h1>   
              
@@ -89,17 +97,7 @@
             </table>
         </div>
 
-        <label for="selectStatus">Filtrar por Status:</label>
-        <select id="selectStatus">
-            <option value="aguardando-orcamento">Aguardando Orçamento</option>
-            <option value="aprovado">Aprovado</option>
-            <option value="nao-aprovado">Não Aprovado</option>
-            <option value="aguardando-aprovacao">Aguardando Aprovação</option>
-            
-        </select>
-
-        <button id="btnPesquisarOsStatus">Filtrar</button>
-
+        <!-- Resultado do Filtro de os por status -->
         <div id="FiltroStatusOs">
             <h1 class="d-flex justify-content-center mb-5 mt-4">Os filtrada por status</h1>
     
@@ -109,6 +107,8 @@
                 </tbody>
             </table>
         </div>
+
+        
     </main>
    
 

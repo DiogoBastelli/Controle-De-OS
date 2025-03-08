@@ -9,6 +9,11 @@ nav {
   padding: 50px;
 }
 
+#selectStatus{
+  width: 10%;
+  margin-left: 770px;
+}
+
 .logoConsel {
   width: 250px;
   height: auto;
@@ -20,7 +25,6 @@ nav {
   list-style: none;
   display: flex;
   justify-content: center; 
-  width: 100%; 
   font-weight:600;
   position: absolute;
   left: 50%;
@@ -146,8 +150,6 @@ h5#tituloCadastroProduto{
 }
 
 
-
-
 #cadastroOSF{
   display: none;
 }
@@ -156,7 +158,9 @@ h5#tituloCadastroProduto{
   display:none;
 }
 
-
+#FiltroStatusOs{
+  display: none;  
+}
 
 #TelaPesquisaProduto{
   display: none;

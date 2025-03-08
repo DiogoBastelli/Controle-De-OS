@@ -88,6 +88,27 @@
                 </tbody>
             </table>
         </div>
+
+        <label for="selectStatus">Filtrar por Status:</label>
+        <select id="selectStatus">
+            <option value="aguardando-orcamento">Aguardando Orçamento</option>
+            <option value="aprovado">Aprovado</option>
+            <option value="nao-aprovado">Não Aprovado</option>
+            <option value="aguardando-aprovacao">Aguardando Aprovação</option>
+            
+        </select>
+
+        <button id="btnPesquisarOsStatus">Filtrar</button>
+
+        <div id="FiltroStatusOs">
+            <h1 class="d-flex justify-content-center mb-5 mt-4">Os filtrada por status</h1>
+    
+            <table id="os-table" class="col-7 mx-auto">
+                <tbody id="os-filtroStatus" >
+                    <!-- As linhas serão inseridas aqui -->
+                </tbody>
+            </table>
+        </div>
     </main>
    
 

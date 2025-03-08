@@ -23,14 +23,15 @@ class OSController {
   
       // Cria a OS
       const novaOS = await OS.create({
-          clienteCpf: cliente.cpf,
-          clienteNome: cliente.nome,
-          ProdutoNumSerie: produto.NumSerie,
-          produtoModelo: produto.modelo,
-          defeito,
-          dataFormatada ,
-          horaFormatada,
-          status: status || "aguardando-orcamento",
+        clienteCpf: cliente.cpf,
+        clienteEndereco:cliente.endereco,
+        clienteNome: cliente.nome,
+        ProdutoNumSerie: produto.NumSerie,
+        produtoModelo: produto.modelo,
+        defeito,
+        dataFormatada ,
+        horaFormatada,
+        status: status || "aguardando-orcamento",
       });
   
       console.log('OS criada com sucesso:', novaOS);
@@ -71,6 +72,27 @@ class OSController {
       res.status(500).json({ error: 'Erro ao buscar a OS' });
     }
   }
+
+  // Filtra todas as OS que têm o status informado
+  async pesquisarOsStatus(req, res) {
+    const { status } = req.params;
+
+    try {
+        const os = await OS.findAll({
+          where: { status }  
+        });
+
+        if (os.length === 0) {
+          return res.status(404).json({ error: 'Nenhuma OS encontrada com esse status.' });
+        }
+
+        res.status(200).json(os);
+    } catch (error) {
+        console.error('Erro ao buscar as OS:', error);
+        res.status(500).json({ error: 'Erro ao buscar as OS' });
+    }
+}
+
 
   async atualizarStatusOS(req, res) {
     const { id } = req.params;

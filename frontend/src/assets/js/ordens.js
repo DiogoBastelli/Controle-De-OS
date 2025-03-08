@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
         btnCadastrarOs.addEventListener('click', function (event) {
         event.preventDefault();
 
-        // Captura os valores dos campos
         const clienteCpf = document.getElementById('inputIdCliente').value;
         const ProdNumSerie = document.getElementById('inputIdProd').value;
         const defeito = document.getElementById('inputDefeitoProd').value;
@@ -38,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(`Hora: ${horaFormatada}`);
 
 
-        // Verifica se os campos obrigatórios estão preenchidos
         if (!clienteCpf || !ProdNumSerie || !defeito) {
             alert('Por favor, preencha todos os campos obrigatórios.');
             return;
@@ -95,6 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <div class="ordemServico me-5 p-4">
                                 <span class="ms-3 os-id">${os.id}</span>
                                 <span class="ms-5">${os.clienteNome}</span>
+                                <span class="ms-5">${os.clienteEndereco}</span>
                                 <span class="ms-5">${os.produtoModelo}</span>
                                 <span class="ms-5">${os.defeito}</span>
                                 <span class="ms-5 status-text">${os.status}</span>
@@ -271,7 +270,6 @@ document.addEventListener('DOMContentLoaded', function () {
     iconeAparecerForm.addEventListener('click' , function(event){
         TodasOs.style.display = 'none'
         formularioOs.style.display = 'block'
-        
     })
     }
   
@@ -284,6 +282,65 @@ document.addEventListener('DOMContentLoaded', function () {
     telaPesquisaOs.style.display = 'none'
     })
     }
+
+    //digitando o status para pesquisar a OS
+    const btnPesquisarOsStatus = document.getElementById('btnPesquisarOsStatus')
+    if(btnPesquisarOsStatus){
+        btnPesquisarOsStatus.addEventListener('click' , function(event){
+            const statusSelecionado = document.getElementById('selectStatus').value;
+            console.log(statusSelecionado)
+            
+            pesquisarOsStatus(statusSelecionado)
+        })
+    }
+    
+    function pesquisarOsStatus(status) {
+        fetch(`http://localhost:3000/api/os/status/${status}`) 
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao buscar OS');
+            }
+            return response.json();
+        })
+        .then(osArray => {  // Agora recebe um array de OS
+            console.log("OS retornadas da API:", osArray);
+            const tabelaResultadoFiltro = document.getElementById('os-filtroStatus');
+    
+            if (!tabelaResultadoFiltro) {
+                console.error("Tabela 'os-filtroStatus' não encontrada.");
+                return;
+            }
+    
+            // Limpa resultados anteriores
+            tabelaResultadoFiltro.innerHTML = '';
+    
+            osArray.forEach(os => {
+                const novaLinhaPesquisa = document.createElement('tr');
+                novaLinhaPesquisa.innerHTML = `
+                 <td colspan="4">
+                    <div class="shadow rounded-4 mb-2 mt-2 border border-black p-4 letras d-flex align-items-center">
+                        <div class="me-5"> 
+                            <span class="ms-3">${os.id}</span>
+                            <span class="ms-5">${os.clienteNome}</span>
+                            <span class="ms-5">${os.produtoModelo}</span>
+                            <span class="ms-5">${os.ProdutoNumSerie}</span>
+                            <span class="ms-5">${os.defeito}</span>
+                            <span class="ms-5 status-text">${os.status}</span>
+                            <span class="ms-5">${os.dataFormatada}</span>
+                            <span class="ms-5 status-text">${os.horaFormatada}</span>
+                        </div>
+                    </div>
+                 </td>
+                `;
+                tabelaResultadoFiltro.appendChild(novaLinhaPesquisa);
+            });
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Ocorreu um erro ao carregar os dados da OS.');
+        });
+    }
+    
 
     carregarOs()
 });

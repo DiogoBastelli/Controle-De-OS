@@ -11,6 +11,10 @@ clienteCpf: {
     type: DataTypes.STRING(100),
     allowNull: false,
 },
+clienteEndereco: {
+    type: DataTypes.STRING(100),
+    allowNull: false,
+},
 clienteNome: {
     type: DataTypes.STRING(100),
     allowNull: false,

@@ -42,19 +42,22 @@ function pesquisarDetalhesCliente(CpfCliente) {
             const novaLinhaPesquisa = document.createElement('tr');
             novaLinhaPesquisa.innerHTML = `
                <td colspan="4">
-                <div class="shadow rounded-4 mb-2 mt-2 border border-black p-4 letras d-flex align-items-center">
-                    <div class="me-5"> 
-                        <span class="ms-5">Nome: ${cliente.nome}</span>
-                        <span class="ms-5">CPF: ${cliente.cpf}</span>
-                        <span class="ms-5">Endereço: ${cliente.endereco}</span>
-                        <span class="ms-5">Telefone: ${cliente.telefone}</span>
-                        <span class="ms-5">Bairro: ${cliente.bairro}</span>
-                        <span class="ms-5">Complemento: ${cliente.complemento}</span>
-                        <span class="ms-5">Cidade: ${cliente.cidade}</span>
-                        <span class="ms-5">Cep: ${cliente.cep}</span>  
+                    <div class="shadow rounded-4 mb-2 mt-2 border border-black p-4 letras">
+                        <div class="d-flex flex-wrap">
+                            <div class="w-100 d-flex">
+                                <span class="flex-grow-1"><strong>Nome:</strong> ${cliente.nome}</span>
+                                <span class="flex-grow-1"><strong>CPF:</strong> ${cliente.cpf}</span>
+                                <span class="flex-grow-1"><strong>Endereço:</strong> ${cliente.endereco}</span>
+                            </div>
+                            <div class="w-100 d-flex mt-2">
+                                <span class="flex-grow-1"><strong>Telefone:</strong> ${cliente.telefone}</span>
+                                <span class="flex-grow-1"><strong>Bairro:</strong> ${cliente.bairro}</span>
+                                <span class="flex-grow-1"><strong>Complemento:</strong> ${cliente.complemento}</span>
+                                <span class="flex-grow-1"><strong>Cidade:</strong> ${cliente.cidade}</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </td>
+                </td>
             `;
             tabelaResultPesquCliente.appendChild(novaLinhaPesquisa);
         })
@@ -84,13 +87,15 @@ function pesquisarDetalhesProduto(idProduto, idOs) {
         const novaLinhaPesquisa = document.createElement('tr');
         novaLinhaPesquisa.innerHTML = `
             <td colspan="4">
-                <div class="shadow rounded-4 mb-2 mt-2 border border-black p-4 letras d-flex align-items-center">
-                    <div class="me-5"> 
-                        <span class="ms-5">Produto: ${produto.tipo}</span>
-                        <span class="ms-5">Modelo: ${produto.modelo}</span>
-                        <span class="ms-5">Número de série: ${produto.NumSerie}</span>
-                    
-                        <span class="ms-5">Defeito: ${os.defeito}</span>
+                <div class="shadow rounded-4 mb-2 mt-2 border border-black p-4 letras">
+                    <div class="d-flex flex-wrap">
+                        <div class="w-100 d-flex justify-content-between">
+                            <span><strong>Produto:</strong> ${produto.tipo}</span>
+                            <span><strong>Modelo:</strong> ${produto.modelo}</span>
+
+                            <span><strong>Número de série:</strong> ${produto.NumSerie}</span>
+                            <span><strong>Defeito:</strong> ${os.defeito}</span>
+                        </div>
                     </div>
                 </div>
             </td>
@@ -114,23 +119,19 @@ function pesquisarDetalhesOs(idOs) {
     .then(os => {
         console.log("OS retornada da API:", os); 
         const tabelaResultadoPesquisa = document.getElementById('detalhesOs-list');
-        if (!tabelaResultadoPesquisa) {
-            console.error("Tabela 'detalhesOs-list' não encontrada.");
-            return;
-        }
 
         const novaLinhaPesquisa = document.createElement('tr');
         novaLinhaPesquisa.innerHTML = `
-         <td colspan="4">
-            <div class="shadow rounded-4 mb-2 mt-2 border border-black p-4 letras d-flex align-items-center">
-                <div class="me-5"> 
-                    <span class="ms-3">Os: ${os.id}</span>
-                    <span class="ms-5 status-text">Status: ${os.status}</span>
-                    <span class="ms-5">data: ${os.dataFormatada}</span>
-                    <span class="ms-5 status-text">horario: ${os.horaFormatada}</span>
+        <td colspan="4">
+            <div class="shadow rounded-4 mb-2 mt-2 border border-black p-4 letras">
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                    <span><strong>OS:</strong> ${os.id}</span>
+                    <span class="status-text"><strong>Status:</strong> ${os.status}</span>
+                    <span><strong>Data:</strong> ${os.dataFormatada}</span>
+                    <span class="status-text"><strong>Horário:</strong> ${os.horaFormatada}</span>
                 </div>
             </div>
-         </td>
+        </td>
         `;
         tabelaResultadoPesquisa.appendChild(novaLinhaPesquisa);
 

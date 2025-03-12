@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const status = 'AguardandoAprovacao';
     const telaPesquisaOs = document.getElementById('divPesquisaOs')
     const telaFiltroOs = document.getElementById('FiltroStatusOs')
+    const campoInputOrcamento = document.getElementById('campoDoOrcamento')
+    
 
     // clicando em cima da os ja cadastrada
     document.addEventListener('click', function (event) {
@@ -111,6 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                     <option value="aprovado" ${os.status === 'aprovado' ? 'selected' : ''}>Aprovado</option>
                                     <option value="nao-aprovado" ${os.status === 'nao-aprovado' ? 'selected' : ''}>Não Aprovado</option>
                                     <option value="aguardando-aprovacao" ${os.status === 'aguardando-aprovacao' ? 'selected' : ''}>Aguardando Aprovação</option>
+                                    <option value="passado-orcamento" ${os.status === 'passado-orcamento' ? 'selected' : ''}>Passado Orcamento</option>
                                 </select>
                             </div>
                         </div>
@@ -189,6 +192,10 @@ document.addEventListener('DOMContentLoaded', function () {
             } else if (status === 'aguardando-aprovacao') {
                 select.classList.add('bg-warning');
                 select.querySelector('option[value="aguardando-aprovacao"]').textContent = 'Aguardando Aprovação';
+            }else if (status === 'passado-orcamento') {
+                campoInputOrcamento.style.display = 'block';
+                select.classList.add('bg-warning');
+                select.querySelector('option[value="passado-orcamento"]').textContent = 'Aguardando Aprovação';
             }
             carregarOs();
         })
@@ -274,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     }
   
-    //botao para fechar formulario
+    //botao para fechar formulario de cadastro da OS
     const btnFecharForm = document.getElementById('btnFecharFormulario')
     if(btnFecharForm){
     btnFecharForm.addEventListener('click' , function(event){
@@ -305,6 +312,7 @@ document.addEventListener('DOMContentLoaded', function () {
         telaPesquisaOs.style.display = 'none'
     });
     
+    //funcao para pesquisar os pelo status
     function pesquisarOsStatus(status) {
         fetch(`http://localhost:3000/api/os/status/${status}`) 
         .then(response => {
@@ -354,6 +362,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     
-
+    //botao para fechar o formualrio de Orcamento
+    const btnFecharFormOrcamento = document.getElementById('btnFecharFormOrcamento')
+    if(btnFecharFormOrcamento){
+        btnFecharFormOrcamento.addEventListener('click' , function(event){
+            campoInputOrcamento.style.display = 'none';
+        })
+    }
     carregarOs()
 });

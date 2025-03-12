@@ -201,3 +201,32 @@ h5#tituloCadastroProduto{
 .teste{
   background-color: #17a2b8;
 }
+
+
+#campoDoOrcamento{
+  display: block;
+ 
+  position: fixed; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999; 
+  background: rgb(240, 240, 240); 
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+  height: 40%;
+  width: 50%;  
+}
+
+#formOrcamento {
+  background: rgb(240, 240, 240); 
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Isso empurra os botões para o final */
+  padding: 20px;
+}
+
+
+

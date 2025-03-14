@@ -114,6 +114,29 @@ class OSController {
     }
 }
 
+async atualizarOrcamento(req, res) {
+  const { id } = req.params;
+  const { orcamento } = req.body; 
+
+  console.log("Recebendo requisição para atualizar orçamento da OS:", id, "Novo orçamento:", orcamento);
+
+  try {
+      // Verifica se a OS existe
+      const os = await OS.findByPk(id);
+      if (!os) {
+          return res.status(404).json({ error: 'OS não encontrada.' });
+      }
+
+      // Atualiza o orçamento da OS
+      os.orcamento = orcamento;
+      await os.save(); 
+
+      res.status(202).json({ message: 'Orçamento da OS atualizado com sucesso!', os });
+  } catch (error) {
+      console.error('Erro ao atualizar o orçamento da OS:', error);
+      res.status(500).json({ error: 'Erro ao atualizar o orçamento da OS', descricao: error.message });
+  }
+}
 
 
 }

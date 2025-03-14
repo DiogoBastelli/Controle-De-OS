@@ -102,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <span class="ms-5 status-text">${os.status}</span>
                                 <span class="ms-5">${os.dataFormatada}</span>
                                 <span class="ms-5 status-text">${os.horaFormatada}</span>
+                                <span class="ms-5 status-text">${os.orcamento}</span>
                                 <span style="display:none" class="ms-5 os-numSerie">${os.ProdutoNumSerie}</span>
                                 <span style="display:none" class="ms-5 os-Cpf">${os.clienteCpf}</span>
                                 
@@ -160,13 +161,11 @@ document.addEventListener('DOMContentLoaded', function () {
         
         console.log("Alterando OS ID:", osId, "para status:", status);
     
-        // Armazenando o ID da OS no botão de orçamento
         const btnEnviarOrcamento = document.getElementById('btnEnviarOrcamento');
         if (btnEnviarOrcamento) {
-            btnEnviarOrcamento.setAttribute('data-os-id', osId);  // Armazenando o ID no botão
+            btnEnviarOrcamento.setAttribute('data-os-id', osId);  
         }
     
-        // O restante do código da função continua o mesmo...
         fetch(`http://localhost:3000/api/os/${osId}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
@@ -375,21 +374,41 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnEnviarOrcamento = document.getElementById('btnEnviarOrcamento');
     if (btnEnviarOrcamento) {
         btnEnviarOrcamento.addEventListener('click', async function (event) {
-            // Obtendo o ID da OS do botão
-            const osId = btnEnviarOrcamento.getAttribute('data-os-id');
-            
-            if (!osId) {
-                alert("Nenhuma OS selecionada.");
+            const orcamento = document.getElementById('inputOrcamento').value;
+            const osId = btnEnviarOrcamento.getAttribute('data-os-id');  // Obtendo o ID da OS
+
+            if (!orcamento) {
+                alert("Por favor, preencha o orçamento antes de enviar.");
                 return;
             }
-            
-            const orcamento = document.getElementById('inputOrcamento').value;
-            console.log("Enviando orçamento para a OS com ID:", osId);
-            alert("Orçamento para a OS " + osId + ": " + orcamento);
-            
-            // Aqui você pode adicionar o código para enviar o orçamento, se necessário
+
+            try {
+                const response = await fetch(`http://localhost:3000/api/os/orcamento/${osId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ orcamento }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erro ao atualizar orçamento da OS');
+                }
+
+                const data = await response.json();
+                console.log("Orçamento atualizado com sucesso:", data);
+                alert('Orçamento atualizado com sucesso!');
+
+                campoInputOrcamento.style.display = 'none';
+                carregarOs()
+                
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Ocorreu um erro ao atualizar o orçamento.');
+            }
         });
     }
+
     
     carregarOs()
 });

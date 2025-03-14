@@ -127,6 +127,7 @@ function pesquisarDetalhesOs(idOs) {
                 <div class="d-flex justify-content-between align-items-center flex-wrap">
                     <span><strong>OS:</strong> ${os.id}</span>
                     <span class="status-text"><strong>Status:</strong> ${os.status}</span>
+                    <span class="status-text"><strong>Orcamento:</strong> ${os.orcamento}</span>
                     <span><strong>Data:</strong> ${os.dataFormatada}</span>
                     <span class="status-text"><strong>Horário:</strong> ${os.horaFormatada}</span>
                 </div>

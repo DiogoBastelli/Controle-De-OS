@@ -157,9 +157,16 @@ document.addEventListener('DOMContentLoaded', function () {
     function mudarStatus(select) {
         const osId = select.getAttribute("data-os-id");
         const status = select.value;
-    
+        
         console.log("Alterando OS ID:", osId, "para status:", status);
     
+        // Armazenando o ID da OS no botão de orçamento
+        const btnEnviarOrcamento = document.getElementById('btnEnviarOrcamento');
+        if (btnEnviarOrcamento) {
+            btnEnviarOrcamento.setAttribute('data-os-id', osId);  // Armazenando o ID no botão
+        }
+    
+        // O restante do código da função continua o mesmo...
         fetch(`http://localhost:3000/api/os/${osId}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
@@ -173,29 +180,23 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(data => {
             console.log("Status atualizado com sucesso:", data);
-
+    
             const statusElement = select.closest('.shadow').querySelector('.ms-5:last-child');
             if (statusElement) {
                 statusElement.textContent = status;
             }
-    
             select.classList.remove('bg-success', 'bg-danger', 'bg-info', 'bg-warning');
             if (status === 'aprovado') {
                 select.classList.add('bg-success');
-                select.querySelector('option[value="aprovado"]').textContent = 'Aprovado';
             } else if (status === 'nao-aprovado') {
                 select.classList.add('bg-danger');
-                select.querySelector('option[value="nao-aprovado"]').textContent = 'Não Aprovado';
             } else if (status === 'aguardando-orcamento') {
                 select.classList.add('bg-info');
-                select.querySelector('option[value="aguardando-orcamento"]').textContent = 'Aguardando Orçamento';
             } else if (status === 'aguardando-aprovacao') {
                 select.classList.add('bg-warning');
-                select.querySelector('option[value="aguardando-aprovacao"]').textContent = 'Aguardando Aprovação';
-            }else if (status === 'passado-orcamento') {
+            } else if (status === 'passado-orcamento') {
                 campoInputOrcamento.style.display = 'block';
                 select.classList.add('bg-warning');
-                select.querySelector('option[value="passado-orcamento"]').textContent = 'Aguardando Aprovação';
             }
             carregarOs();
         })
@@ -204,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Ocorreu um erro ao atualizar o status da OS.');
         });
     }
-
+    
     function pesquisarOs(idPesquisaOs) {
     fetch(`http://localhost:3000/api/os/${idPesquisaOs}`) 
     .then(response => {
@@ -369,5 +370,26 @@ document.addEventListener('DOMContentLoaded', function () {
             campoInputOrcamento.style.display = 'none';
         })
     }
+
+    //Botao para enviar o orcamento do produto
+    const btnEnviarOrcamento = document.getElementById('btnEnviarOrcamento');
+    if (btnEnviarOrcamento) {
+        btnEnviarOrcamento.addEventListener('click', async function (event) {
+            // Obtendo o ID da OS do botão
+            const osId = btnEnviarOrcamento.getAttribute('data-os-id');
+            
+            if (!osId) {
+                alert("Nenhuma OS selecionada.");
+                return;
+            }
+            
+            const orcamento = document.getElementById('inputOrcamento').value;
+            console.log("Enviando orçamento para a OS com ID:", osId);
+            alert("Orçamento para a OS " + osId + ": " + orcamento);
+            
+            // Aqui você pode adicionar o código para enviar o orçamento, se necessário
+        });
+    }
+    
     carregarOs()
 });

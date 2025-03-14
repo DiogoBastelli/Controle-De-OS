@@ -36,6 +36,10 @@ status: {
     allowNull: false,
     defaultValue: "aguardando-orcamento",
 },
+orcamento: {
+    type: DataTypes.STRING(255),
+    allowNull: true,  
+},
 dataFormatada: {
     type: DataTypes.STRING(255),
     allowNull: false,

@@ -115,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                     <option value="nao-aprovado" ${os.status === 'nao-aprovado' ? 'selected' : ''}>Não Aprovado</option>
                                     <option value="aguardando-aprovacao" ${os.status === 'aguardando-aprovacao' ? 'selected' : ''}>Aguardando Aprovação</option>
                                     <option value="passado-orcamento" ${os.status === 'passado-orcamento' ? 'selected' : ''}>Passado Orcamento</option>
+                                    <option value="pronto" ${os.status === 'pronto' ? 'selected' : ''}>Pronto</option>
                                 </select>
                             </div>
                         </div>
@@ -136,6 +137,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         select.classList.add('bg-info');
                     } else if (status === 'aguardando-aprovacao') {
                         select.classList.add('bg-warning');
+                    }  else if (status === 'pronto') {
+                        select.classList.add('bg-primary'); 
                     }
                 }
 

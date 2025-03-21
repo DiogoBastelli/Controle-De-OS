@@ -1,0 +1,231 @@
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 8vh;
+  background-color: #000000;
+  position: relative; 
+  padding: 50px;
+}
+
+#selectStatus{
+  width: 10%;
+  margin-left: 770px;
+}
+
+.logoConsel {
+  width: 250px;
+  height: auto;
+  position: absolute;
+  left: 50px; 
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: center; 
+  font-weight:600;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-list li {
+  letter-spacing: 3px;
+  margin: 0 16px; 
+  font-size: 35px;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+a:hover {
+  opacity: 0.5;
+  text-decoration: none;
+}
+
+.container-wrapper{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 20px;
+
+}
+.container{
+  background-color: black;
+}
+
+.input-wrapper{
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  position: relative;
+}
+
+.input-wrapper i{ 
+  color: #000000;
+  cursor: pointer;
+}
+.input-wrapper input{
+  background-color: transparent;
+  border: none;
+  color:#000000;
+  font-size: 20px;
+}
+
+.input-wrapper input:focus-visible{
+  outline: none;
+}
+
+.fa-pencil {
+  position: absolute;
+  right: 20vw; /* Move para a esquerda de forma responsiva */
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgb(255, 255, 255);
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+
+
+
+
+
+form{
+  background-color: #f7f7f7;
+}
+form#cadastroProduto{
+  display: none;
+}
+form#FormCadastroOS {
+  display: none;
+}
+form#cadastroClienteF{
+  display: none;
+}
+.novoEstilo{
+  display: block;
+}
+h5#tituloCadastroProduto{
+  display: none;
+} 
+.nomeConsel{
+  display: flex;
+  justify-content: right;
+}
+.letras{
+  font-size: larger;
+  font-weight: 600;
+}
+.statusAguardandoOrc{
+  background-color: #17a2b8;
+}
+.statusAguardandoAprovOrc{
+  background-color:#ffc107;
+}
+.statusAprovado{
+  background-color: #28a745;
+}
+.statusPronto{
+  background-color: rgba(231, 231, 124, 0.83);
+}
+.statusNaoAprovado{
+  background-color:#dc3545;
+}
+
+
+.border-laranja {
+  border-color: orange !important; 
+}
+
+
+#cadastroOSF{
+  display: none;
+}
+
+#divPesquisaOs{
+  display:none;
+}
+
+#FiltroStatusOs{
+  display: none;  
+}
+
+#TelaPesquisaProduto{
+  display: none;
+}
+
+#telaPesquisaCliente{
+  display: none;
+}
+
+
+.corpo{
+  width: 200px;
+  height: 100px;
+  background-color: blue;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+.ordemServico{
+  cursor: pointer;
+}
+
+
+#detalhesDaOs{
+  margin-top: 5%;
+  padding-bottom: 5%;
+  margin-left: 8% ;
+  margin-right: 8%;
+  border-radius: 15px;
+  border: 3px solid black;
+ 
+}
+
+.teste{
+  background-color: #17a2b8;
+}
+
+
+#campoDoOrcamento{
+  display: none;
+  position: fixed; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999; 
+  background: rgb(240, 240, 240); 
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+  height: 40%;
+  width: 50%;  
+}
+
+#formOrcamento {
+  background: rgb(240, 240, 240); 
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Isso empurra os botões para o final */
+  padding: 20px;
+}
+
+
+

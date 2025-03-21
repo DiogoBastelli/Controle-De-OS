@@ -1,0 +1,36 @@
+
+
+GET http://localhost:3000/api/cliente
+Content-Type: application/json
+
+###
+GET http://localhost:3000/api/cliente/filtro/email/joao.email@example.com
+Content-Type: application/json
+
+### 
+POST http://localhost:3000/api/cliente
+Content-Type: application/json
+
+  {
+    "nome": "Nome Cliente",
+    "email": "joao.email@example.com",
+    "endereco": "Rua 01, 123",
+    "bairro": "Centro",
+    "tipo_cliente": "JURIDICA"
+  }
+
+###
+PUT http://localhost:3000/api/cliente/2
+Content-Type: application/json
+
+{
+    "nome": "Nome Atualizado",
+    "email": "email@example.com",
+    "endereco": "Rua TESTE, 123",
+    "bairro": "BAIRRO",
+    "tipo_cliente": "JURIDICA"
+  }
+
+###
+DELETE  http://localhost:3000/api/cliente/1
+Content-Type: application/json

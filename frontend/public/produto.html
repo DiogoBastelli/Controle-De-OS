@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Cadastro de Produto</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="../src/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../src/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="../src/assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <main >
+        <header >
+            <nav class="header">
+                <img  class="logoConsel " src="../src/imagem/consel-logo.png"  >
+                <ul class="nav-list">
+                    <li><a href="cliente.html" >Clientes</a></li>
+                    <li><a href="produto.html" >Produto</a></li>
+                    <li><a href="os.html" >Os</a></li>
+                </ul>
+
+                <i id="iconeAparecerFormCadastro" class="fa-solid fa-pencil"></i>
+                
+                <div class="container-wrapper">
+                    <div class="container">
+                        <div class="input-wrapper">
+                            <input id="inputIdProduto" type="text" placeholder="Pesquisar Produto">
+                            <i class="fa fa-search" id="pesquisarProduto"></i>
+                        </div>
+                    </div>
+                </div>
+                
+            </nav>
+        </header>
+
+        </header>
+        
+        <form id="cadastroProduto" class="p-5 border border-black rounded-5 col-sm-6 mx-auto shadow p-3 mb-5 bg-body-tertiary rounded">
+            <!-- tipo do Produto -->
+            <div class="row mb-3">
+                <label for="inputTipo" class="col-sm-2 col-form-label">Tipo do Produto</label>
+                <div class="col-sm-8">
+                    <select id="inputTipo" class="form-control" name="tipo">
+                        <option value="microondas">Micro-ondas</option>
+                        <option value="geladeira">Geladeira</option>
+                        <option value="purificador">Purificador</option>
+                    </select>
+                </div>
+            </div>
+        
+            <!-- modelo do Produto -->
+            <div class="row mb-3">
+                <label for="inputModelo" class="col-sm-2 col-form-label">Modelo</label>
+                <div class="col-sm-8">
+                    <select id="inputModelo" name="modelo" class="form-select" required>
+                        <option value="" disabled selected>Selecione o modelo</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- numero de serie -->
+            <div class="row mb-3">
+                <label for="inputNumSerie" class="col-sm-2 col-form-label">Número de série</label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control" id="inputNumSerie" placeholder="Digite o número de série">
+                </div>
+            </div>
+            
+            <!-- botoes de acao -->
+            <div class="text-center mt-4">
+                <button type="button" id="cadastrarProduto" class="btn btn-primary">Cadastrar</button>
+                <button type="button" id="btnFecharFormulario" class="btn btn-danger">Cancelar</button>
+            </div> 
+        </form>
+
+        <div id="TodosProdutos">
+            <h1 class="d-flex justify-content-center mb-5 mt-4">Todos Produtos</h1>
+
+            <table class="col-7 mx-auto" id="produto-table">
+                <tbody class="table" id="produto-list">
+                    <!-- As linhas serão inseridas aqui -->
+                </tbody>
+            </table>
+        </div>
+        
+
+        <div id="TelaPesquisaProduto">
+            <h1 class="d-flex justify-content-center mb-5 mt-4">Resultado da pesquisa do Produto</h1>
+            <table class="col-7 mx-auto">
+                <tbody id="resultPesquisaProduto">
+                    <!-- As linhas serão inseridas aqui -->
+                </tbody>
+            </table>
+        </div>
+            
+
+    </main><!-- End Main Content -->
+
+    <script src="../src/assets/js/produto.js"></script>
+</body>
+
+</html>

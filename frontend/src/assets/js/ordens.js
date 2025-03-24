@@ -139,6 +139,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         select.classList.add('bg-warning');
                     }  else if (status === 'pronto') {
                         select.classList.add('bg-primary'); 
+                    }else if (status === 'passado-orcamento') {
+                        select.classList.add('bg-purple'); 
                     }
                 }
 
@@ -198,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 select.classList.add('bg-warning');
             } else if (status === 'passado-orcamento') {
                 campoInputOrcamento.style.display = 'block';
-                select.classList.add('bg-warning');
+                select.classList.add('bg-purple');
             }
             carregarOs();
         })
@@ -412,6 +414,5 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    
     carregarOs()
 });

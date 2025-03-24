@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     
-    const formulario = document.getElementById('cadastroClienteF')
+    const formulario = document.getElementById('cadastroCliente')
     const todosClientes = document.getElementById('TodosClientes')
     const telaPesquisaCliente = document.getElementById('telaPesquisaCliente')
 
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('Cliente cadastrado com sucesso!'); // Mensagem de sucesso
 
                 // Limpar o formulário
-                document.getElementById('cadastroClienteF').reset();
+                document.getElementById('cadastroCliente').reset();
 
                 // Recarregar a tabela com todos os clientes
                 todosClientes.style.display = 'block'

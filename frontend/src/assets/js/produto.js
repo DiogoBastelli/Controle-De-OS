@@ -11,10 +11,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const telaPesquisaProduto = document.getElementById('TelaPesquisaProduto')
     
     const modelosPorTipo = {
-        microondas: ['MDA30', 'MDA40', 'MDA50'],
-        geladeira: ['BRM50', 'BRM60', 'BRM80'],
-        purificador: ['PFL100', 'PFL200'],
-        bebedouro: ['CPB30', 'CPB40', 'CPB50']
+        microondas: ['BMS46AB', 'BMS20AR', 'BMJ38AR' ,'BMG45AR' , 'BMS45B'],
+        fogao:['BFG51' , 'BFG52' , 'BFG53' , 'BFG55' , 'BFG56' , 'BFG60'],
+        lavadora:['BWT7' , 'BWT8' , 'BWT9' , 'BWT10' , 'BWT11' , 'BWT12'], 
+        lavalouca:['BLF8' , 'BLF9' , 'BLF10' , 'BLF11'],
+        geladeira: ['BRM34', 'BRM38', 'BRM39' , 'BRM41' , 'BRM50' , 'BRM80' , 'BMF35',
+        'BMF40' , 'BRE57' , 'BRE57AK' , 'BRS61' , 'CRM15' , 'CRM21' , 'CRM29' , 'CRM32' ,
+        'CRM38' , 'CRM40' , 'CRM43NK' , 'CRM56'],
+        purificador: ['CPC31AB', 'CPB33AV' , 'CPB34AF' , 'CPB36AFO'] ,
+        freezer: ['BFH20', 'BFH15', 'BFH10'],
+        cooktop: ['BDB61AE', 'BDB62AE', 'BDB72AE' , 'BDB77AE' ,'BDB83AE' , 'CD060AE' , 'CD075AE' , 'CD075BR' , 'CD075PR' , 'CD075AR'],
+        adega: ['BZC12BE', 'BZC31BE', 'BZC51BE' , 'BZC62BE' , 'CZD12AT' ,'CZD18AT' , 'CZD36AT' , 'CZD36AT' , 'CZD48AT' , 'CZD60AT'],
+        lavaEseca: ['BNS10AB', 'BNS12AB', 'BNS15AB' , 'BNS20AB']
     };
 
     //Icone pesquisar produto

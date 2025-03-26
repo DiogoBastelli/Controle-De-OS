@@ -13,19 +13,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
                 return response.json();
             })
-            .then(cliente => {
-                console.log("Cliente retornado da API:", cliente); 
-    
+            .then(cliente => {    
                 if (!cliente) {
                     alert("Cliente não encontrado!");
                     return;
                 }
     
                 const tabelaResultPesquCliente = document.getElementById('resultClientes-list');
-                if (!tabelaResultPesquCliente) {
-                    console.error("Tabela 'resultClientes-list' não encontrada.");
-                    return;
-                }
     
                 const novaLinhaPesquisa = document.createElement('tr');
                 novaLinhaPesquisa.innerHTML = `
@@ -49,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .catch(error => {
                 console.error('Erro:', error);
-                alert('Cliente não encontrado ou erro na API.');
+                alert('Nenhum Cliente encontrado ');
             });
     }
     
@@ -100,20 +94,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 return response.json();
             })
             .then(data => {
-                console.log('Sucesso:', data);
-                alert('Cliente cadastrado com sucesso!'); // Mensagem de sucesso
+                alert('Cliente cadastrado com sucesso!'); 
 
-                // Limpar o formulário
                 document.getElementById('cadastroCliente').reset();
 
-                // Recarregar a tabela com todos os clientes
                 todosClientes.style.display = 'block'
                 formulario.style.display = 'none';
                 carregarClientes();
             })
             .catch(error => {
                 console.error('Erro:', error);
-                alert('Ocorreu um erro ao cadastrar o cliente.'); // Mensagem de erro
+                alert('Ocorreu um erro ao cadastrar o cliente.'); 
             });   
         });
     }
@@ -123,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (iconePesquisa) {
         iconePesquisa.addEventListener('click', function(event) {
             const cpfClientePesquisa = document.getElementById('inputCpfCliente').value;
-            console.log(cpfClientePesquisa);
 
             pesquisarCliente(cpfClientePesquisa); 
 
@@ -155,7 +145,7 @@ function carregarClientes() {
         })
         .then(clientes => {
             const tabelaClientes = document.getElementById('clientes-list');
-            tabelaClientes.innerHTML = ''; // Limpa a tabela antes de preenchê-la
+            tabelaClientes.innerHTML = ''; 
 
             clientes.forEach(cliente => {
                 const novaLinha = document.createElement('tr');

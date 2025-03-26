@@ -57,14 +57,10 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
         })
         .then(produtos => {
-            console.log("Produto retornado da API:", produtos); 
+             
             const produto = produtos[0];
         
             const tabelaResultadoPesquisa = document.getElementById('resultPesquisaProduto');
-            if (!tabelaResultadoPesquisa) {
-                console.error("Tabela 'resultPesquisa' não encontrada.");
-                return;
-            }
 
             const novaLinhaPesquisa = document.createElement('tr');
             novaLinhaPesquisa.innerHTML = `
@@ -83,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .catch(error => {
             console.error('Erro:', error);
-            alert('Ocorreu um erro ao carregar os dados do produto.');
+            alert('Nenhum Produto encontrado');
         });
     }
 
@@ -146,12 +142,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 body: JSON.stringify({ tipo, modelo, NumSerie })
             })
             .then(response => {
-                console.log('Status da resposta:', response.status);
                 if (!response.ok) throw new Error('Erro na resposta da rede');
                 return response.json();
             })
-            .then(data => { 
-                console.log('Sucesso:', data);
+            .then(data => {
                 alert('Produto cadastrado com sucesso!');
                 document.getElementById('cadastroProduto').reset();
                 TodosProduto.style.display = 'block'
@@ -173,10 +167,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(produtos => {
             const tabelaprodutos = document.getElementById('produto-list');
-            if (!tabelaprodutos) {
-                console.error("Tabela 'produto-list' não encontrada.");
-                return;
-            }
+            
             tabelaprodutos.innerHTML = '';
 
             produtos.forEach(produto => {

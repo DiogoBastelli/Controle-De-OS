@@ -5,9 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
     let osId = params.get('OsId');
 
     if (clienteId && produtoId && osId) {
-        console.log("ID do Cliente:", clienteId);
-        console.log("ID do Produto:", produtoId);
-        console.log("ID do Produto:", osId);
         pesquisarDetalhesCliente(clienteId);
         pesquisarDetalhesProduto(produtoId, osId)
         pesquisarDetalhesOs(osId)
@@ -26,18 +23,12 @@ function pesquisarDetalhesCliente(CpfCliente) {
             return response.json();
         })
         .then(cliente => {
-            console.log("Cliente retornado da API:", cliente); 
-
             if (!cliente) {
                 alert("Cliente não encontrado!");
                 return;
             }
 
             const tabelaResultPesquCliente = document.getElementById('detalhesCliente-list');
-            if (!tabelaResultPesquCliente) {
-                console.error("Tabela 'detalhesCliente-list' não encontrada.");
-                return;
-            }
 
             const novaLinhaPesquisa = document.createElement('tr');
             novaLinhaPesquisa.innerHTML = `
@@ -73,16 +64,9 @@ function pesquisarDetalhesProduto(idProduto, idOs) {
         fetch(`http://localhost:3000/api/os/${idOs}`).then(res => res.json())
     ])
     .then(([produtos, os]) => {
-        console.log("Produto retornado da API:", produtos);
-        console.log("OS retornada da API:", os);
 
         const produto = produtos[0]; 
         const tabelaResultadoPesquisa = document.getElementById('detalhesProduto-list');
-
-        if (!tabelaResultadoPesquisa) {
-            console.error("Tabela 'detalhesProduto-list' não encontrada.");
-            return;
-        }
 
         const novaLinhaPesquisa = document.createElement('tr');
         novaLinhaPesquisa.innerHTML = `
@@ -117,7 +101,6 @@ function pesquisarDetalhesOs(idOs) {
         return response.json();
     })
     .then(os => {
-        console.log("OS retornada da API:", os); 
         const tabelaResultadoPesquisa = document.getElementById('detalhesOs-list');
 
         const novaLinhaPesquisa = document.createElement('tr');

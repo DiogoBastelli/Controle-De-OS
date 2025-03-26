@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const clienteOsId = elemento.querySelector('.os-Cpf').innerText.trim();
             const produtoOsId = elemento.querySelector('.os-numSerie').innerText.trim();
             const OsId = elemento.querySelector('.os-id').innerText.trim();
-            alert('ID do cliente: ' + clienteOsId + ' ID Do Produto: ' + produtoOsId + 'ID da Os: ' + OsId);
             
             window.location.href = `detalhes.html?idCliente=${clienteOsId}&idProduto=${produtoOsId}&OsId=${OsId}`;
 
@@ -35,9 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const dataHora = new Date();
         const dataFormatada = dataHora.toLocaleDateString(); 
         const horaFormatada = dataHora.toLocaleTimeString(); 
-
-        console.log(`Data: ${dataFormatada}`);
-        console.log(`Hora: ${horaFormatada}`);
 
 
         if (!clienteCpf || !ProdNumSerie || !defeito) {
@@ -60,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
             
         })
         .then(data => {
-            console.log('Sucesso:', data);
+            
             alert('OS cadastrada com sucesso!');
 
             // Limpa o formulário e atualiza a lista de OSs
@@ -164,7 +160,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const osId = select.getAttribute("data-os-id");
         const status = select.value;
         
-        console.log("Alterando OS ID:", osId, "para status:", status);
     
         const btnEnviarOrcamento = document.getElementById('btnEnviarOrcamento');
         if (btnEnviarOrcamento) {
@@ -183,7 +178,6 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
         })
         .then(data => {
-            console.log("Status atualizado com sucesso:", data);
     
             const statusElement = select.closest('.shadow').querySelector('.ms-5:last-child');
             if (statusElement) {
@@ -219,13 +213,8 @@ document.addEventListener('DOMContentLoaded', function () {
         return response.json();
     })
     .then(os => {
-        console.log("OS retornada da API:", os); 
         const tabelaResultadoPesquisa = document.getElementById('resultPesquisa');
-        if (!tabelaResultadoPesquisa) {
-            console.error("Tabela 'resultPesquisa' não encontrada.");
-            return;
-        }
-
+        
         const novaLinhaPesquisa = document.createElement('tr');
         novaLinhaPesquisa.innerHTML = `
          <td colspan="4">
@@ -271,6 +260,7 @@ document.addEventListener('DOMContentLoaded', function () {
             telaPesquisaOs.style.display = 'block';
             TodasOs.style.display = 'none';
             formularioOs.style.display = 'none'
+            telaFiltroOs.style.display = 'none'
         } else {
             alert("os não encontrado!");
         }
@@ -326,16 +316,9 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             return response.json();
         })
-        .then(osArray => {  // Agora recebe um array de OS
-            console.log("OS retornadas da API:", osArray);
+        .then(osArray => {  
             const tabelaResultadoFiltro = document.getElementById('os-filtroStatus');
-    
-            if (!tabelaResultadoFiltro) {
-                console.error("Tabela 'os-filtroStatus' não encontrada.");
-                return;
-            }
-    
-            // Limpa resultados anteriores
+
             tabelaResultadoFiltro.innerHTML = '';
     
             osArray.forEach(os => {
@@ -363,7 +346,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .catch(error => {
             console.error('Erro:', error);
-            alert('Ocorreu um erro ao carregar os dados da OS.');
+            alert('Nenhuma OS encotrada');
         });
     }
     
@@ -401,7 +384,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 const data = await response.json();
-                console.log("Orçamento atualizado com sucesso:", data);
                 alert('Orçamento atualizado com sucesso!');
 
                 campoInputOrcamento.style.display = 'none';
